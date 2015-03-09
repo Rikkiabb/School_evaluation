@@ -17,26 +17,26 @@
 6 verbose parsed url   path: 'karma-cli',
 6 verbose parsed url   href: 'karma-cli' }
 7 silly lockFile aa100f68-karma-cli karma-cli
-8 verbose lock karma-cli /Users/Haftor/.npm/aa100f68-karma-cli.lock
+8 verbose lock karma-cli /Users/Stefan/.npm/aa100f68-karma-cli.lock
 9 silly lockFile aa100f68-karma-cli karma-cli
 10 silly lockFile aa100f68-karma-cli karma-cli
 11 verbose addNamed [ 'karma-cli', '' ]
 12 verbose addNamed [ null, '*' ]
 13 silly lockFile 8f6f2c72-karma-cli karma-cli@
-14 verbose lock karma-cli@ /Users/Haftor/.npm/8f6f2c72-karma-cli.lock
+14 verbose lock karma-cli@ /Users/Stefan/.npm/8f6f2c72-karma-cli.lock
 15 silly addNameRange { name: 'karma-cli', range: '*', hasData: false }
 16 verbose request where is /karma-cli
 17 verbose request registry https://registry.npmjs.org/
-18 verbose request id 7a3cb2f038e64b7b
+18 verbose request id d3df54b175da7823
 19 verbose url raw /karma-cli
 20 verbose url resolving [ 'https://registry.npmjs.org/', './karma-cli' ]
 21 verbose url resolved https://registry.npmjs.org/karma-cli
 22 verbose request where is https://registry.npmjs.org/karma-cli
-23 info trying registry request attempt 1 at 11:15:51
+23 info trying registry request attempt 1 at 13:49:24
 24 http GET https://registry.npmjs.org/karma-cli
 25 http 200 https://registry.npmjs.org/karma-cli
 26 silly registry.get cb [ 200,
-26 silly registry.get   { date: 'Mon, 09 Mar 2015 11:15:51 GMT',
+26 silly registry.get   { date: 'Mon, 09 Mar 2015 13:49:25 GMT',
 26 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
 26 silly registry.get     etag: '"9407UZHNBATH4K63F1DU9QZL8"',
 26 silly registry.get     'content-type': 'application/json',
@@ -44,11 +44,11 @@
 26 silly registry.get     'content-length': '5993',
 26 silly registry.get     'accept-ranges': 'bytes',
 26 silly registry.get     via: '1.1 varnish',
-26 silly registry.get     age: '35',
-26 silly registry.get     'x-served-by': 'cache-fra1226-FRA',
+26 silly registry.get     age: '17',
+26 silly registry.get     'x-served-by': 'cache-fra1243-FRA',
 26 silly registry.get     'x-cache': 'HIT',
 26 silly registry.get     'x-cache-hits': '1',
-26 silly registry.get     'x-timer': 'S1425899751.920190,VS0,VE0',
+26 silly registry.get     'x-timer': 'S1425908965.062751,VS0,VE0',
 26 silly registry.get     vary: 'Accept',
 26 silly registry.get     'keep-alive': 'timeout=10, max=50',
 26 silly registry.get     connection: 'Keep-Alive' } ]
@@ -57,13 +57,13 @@
 29 verbose addNamed [ 'karma-cli', '0.0.4' ]
 30 verbose addNamed [ '0.0.4', '0.0.4' ]
 31 silly lockFile 0ef08b95-karma-cli-0-0-4 karma-cli@0.0.4
-32 verbose lock karma-cli@0.0.4 /Users/Haftor/.npm/0ef08b95-karma-cli-0-0-4.lock
+32 verbose lock karma-cli@0.0.4 /Users/Stefan/.npm/0ef08b95-karma-cli-0-0-4.lock
 33 silly lockFile ad31c554-rg-karma-cli-karma-cli-0-0-4-tgz https://registry.npmjs.org/karma-cli/-/karma-cli-0.0.4.tgz
-34 verbose lock https://registry.npmjs.org/karma-cli/-/karma-cli-0.0.4.tgz /Users/Haftor/.npm/ad31c554-rg-karma-cli-karma-cli-0-0-4-tgz.lock
+34 verbose lock https://registry.npmjs.org/karma-cli/-/karma-cli-0.0.4.tgz /Users/Stefan/.npm/ad31c554-rg-karma-cli-karma-cli-0-0-4-tgz.lock
 35 verbose addRemoteTarball [ 'https://registry.npmjs.org/karma-cli/-/karma-cli-0.0.4.tgz',
 35 verbose addRemoteTarball   '1840a6a2545754bb02100f09229cdd9963a6cf68' ]
-36 info retry fetch attempt 1 at 11:15:51
-37 verbose fetch to= /var/folders/wx/7kqn6z8x7tz5l5t_91fdx7q00000gn/T/npm-43163-HdjrairN/registry.npmjs.org/karma-cli/-/karma-cli-0.0.4.tgz
+36 info retry fetch attempt 1 at 13:49:24
+37 verbose fetch to= /var/folders/c5/4pcq4r9x1ds9zdy880tdd98r0000gn/T/npm-10166-XbpRwKX5/registry.npmjs.org/karma-cli/-/karma-cli-0.0.4.tgz
 38 http GET https://registry.npmjs.org/karma-cli/-/karma-cli-0.0.4.tgz
 39 http 200 https://registry.npmjs.org/karma-cli/-/karma-cli-0.0.4.tgz
 40 silly lockFile ad31c554-rg-karma-cli-karma-cli-0-0-4-tgz https://registry.npmjs.org/karma-cli/-/karma-cli-0.0.4.tgz
@@ -120,11 +120,11 @@
 47 info install karma-cli@0.0.4 into /usr/local/lib
 48 info installOne karma-cli@0.0.4
 49 verbose lib/node_modules/karma-cli unbuild
-50 verbose tar unpack /Users/Haftor/.npm/karma-cli/0.0.4/package.tgz
+50 verbose tar unpack /Users/Stefan/.npm/karma-cli/0.0.4/package.tgz
 51 silly lockFile f15a2687-local-lib-node-modules-karma-cli tar:///usr/local/lib/node_modules/karma-cli
-52 verbose lock tar:///usr/local/lib/node_modules/karma-cli /Users/Haftor/.npm/f15a2687-local-lib-node-modules-karma-cli.lock
-53 silly lockFile 2350a712--npm-karma-cli-0-0-4-package-tgz tar:///Users/Haftor/.npm/karma-cli/0.0.4/package.tgz
-54 verbose lock tar:///Users/Haftor/.npm/karma-cli/0.0.4/package.tgz /Users/Haftor/.npm/2350a712--npm-karma-cli-0-0-4-package-tgz.lock
+52 verbose lock tar:///usr/local/lib/node_modules/karma-cli /Users/Stefan/.npm/f15a2687-local-lib-node-modules-karma-cli.lock
+53 silly lockFile 990a5f69--npm-karma-cli-0-0-4-package-tgz tar:///Users/Stefan/.npm/karma-cli/0.0.4/package.tgz
+54 verbose lock tar:///Users/Stefan/.npm/karma-cli/0.0.4/package.tgz /Users/Stefan/.npm/990a5f69--npm-karma-cli-0-0-4-package-tgz.lock
 55 silly gunzTarPerm modes [ '755', '644' ]
 56 error Error: EACCES, mkdir '/usr/local/lib/node_modules/karma-cli'
 56 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/karma-cli']
@@ -141,7 +141,7 @@
 57 error Please try running this command again as root/Administrator.
 58 error System Darwin 14.1.0
 59 error command "node" "/usr/local/bin/npm" "install" "-g" "karma-cli"
-60 error cwd /Users/Haftor/Desktop/giiii
+60 error cwd /Users/Stefan/Documents/HR/V-2015/Vefforritun II/School_evaluation
 61 error node -v v0.10.36
 62 error npm -v 1.4.28
 63 error path /usr/local/lib/node_modules/karma-cli
