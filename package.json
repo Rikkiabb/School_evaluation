@@ -1,0 +1,30 @@
+{
+  "name": "School_evaluation",
+  "version": "1.0.0",
+  "description": "assignmanet 3",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haftor2410/School_evaluation.git"
+  },
+  "author": "Haftor Gunnlaugsson, Rikard Arnar, Stefan Hafsteinsson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haftor2410/School_evaluation/issues"
+  },
+  "homepage": "https://github.com/haftor2410/School_evaluation",
+  "devDependencies": {
+    "angular-mocks": "^1.3.14",
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-uglify": "^0.8.0",
+    "jasmine-core": "^2.2.0",
+    "karma": "^0.12.31",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.5"
+  }
+}
