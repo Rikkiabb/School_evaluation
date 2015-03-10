@@ -1,4 +1,4 @@
-angular.module("EvalApp").controller("LoginController", function($scope, $location, loginFactory){
+angular.module("EvalApp").controller("LoginController", function($scope, $location, loginFactory, $http, SERVER, sessionService){
 	$scope.login = function($event){
 		if($event !== undefined){
 			if($event.keyCode !== 13){
@@ -13,6 +13,24 @@ angular.module("EvalApp").controller("LoginController", function($scope, $locati
 			console.log("ERORR");
 			return;
 		}
-		loginFactory.login($scope.username, $scope.password);
+			
+		loginFactory.login($scope.username, $scope.password, function(){
+			console.log(sessionService.getToken());
+		});
+		
 	};
+
+	$scope.test = function (){
+
+		$http.get(SERVER + "evaluations")
+		.success(function(data){
+			console.log(data);
+		})
+		.error(function(data, status){
+			
+			console.log(status);
+		});
+
+	};
+
 });
