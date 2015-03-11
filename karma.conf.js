@@ -15,10 +15,28 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        "bower_components/angular/angular.js",
-        'node_modules/angular-mocks/angular-mocks.js',
-        "src/*.js",
+        "bower_components/jquery/dist/jquery.min.js",
+        "bower_components/angular/angular.min.js",
+        "bower_components/ng-tags-input/ng-tags-input.min.js",
+        "bower_components/angular-route/angular-route.min.js",
+        "bower_components/angular-animate/angular-animate.min.js",
+        "bower_components/angularjs-toaster/toaster.js",
+        "bower_components/angular-bootstrap/ui-bootstrap.min.js",
+        "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
+        "src/app.js",
+        "src/sessionService.js",
+        "src/sessionInjector.js",
+        "src/modalInstanceController.js",
+        "src/loginController.js",
+        "src/loginFactory.js",
+        "src/adminController.js",
+        "src/adminFactory.js",
+        "bower_components/moment/min/moment.min.js",
+        "node_modules/angular-mocks/angular-mocks.js",
+        "bower_components/angular-moment/angular-moment.min.js",
+        "bower_components/bootstrap/dist/js/bootstrap.min.js",
         "tests/*.spec.js"
+        
     ],
 
 

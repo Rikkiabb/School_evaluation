@@ -1,14 +1,60 @@
 <script type="text/ng-template" id="myModalContent.html">
   <div class="modal-header">
-      <h3 class="modal-title">Im a modal!</h3>
+      <h3 class="modal-title">New Template</h3>
   </div>
   <div class="modal-body">
-      <ul>
-          <li ng-repeat="item in items">
-              <a ng-click="selected.item = item">{{ item }}</a>
-          </li>
+
+      <tabset justified="true">
+        <tab heading="Text" ng-click="change('text')"></tab>
+        <tab heading="Multiple choice" ng-click="change('multiple')"></tab>
+      </tabset>
+
+      <div ng-show="showText">
+        <h4>Please enter a question in Icelandic:</h4>
+        <input type="text" ng-model="textQuestionIS"/>
+        <h4>Please enter a question in English:</h4>
+        <input type="text" ng-model="textQuestionENG"/>
+
+      </div>
+
+      <div ng-show="showMultiple">
+
+        <h4>Select a type:</h4>
+        <input type="radio" ng-model="multipleType" value="single">  Radio <br/>
+        <input type="radio" ng-model="multipleType" value="multiple"> Check <br/>
+
+        <h4>Please enter a question in Icelandic:</h4>
+        <input type="text" ng-model="multipleQuestionIS"/>
+        <h4>Please enter a question in English:</h4>
+        <input type="text" ng-model="multipleQuestionENG"/>
+        <h4>Please enter choices ordered by weight in Icelandic:</h4>
+        <tags-input ng-model="answersIS" placeholder="Enter a choice and press Enter"></tags-input>
+        <h4>Please enter choices ordered by weight in English:</h4>
+        <tags-input ng-model="answersENG" placeholder="Enter a choice and press Enter"></tags-input>
+      </div>
+
+      <div ng-show="showCheck">
+        <h4>Please enter a question in Icelandic:</h4>
+        <input type="text" ng-model="checkQuestionIS"/>
+        <h4>Please enter a question in English:</h4>
+        <input type="text" ng-model="checkQuestionENG"/>
+        <h4>Please enter choices ordered by weight in Icelandic:</h4>
+        <tags-input ng-model="checkAnswersIS" placeholder="Enter a choice and press Enter"></tags-input>
+        <h4>Please enter choices ordered by weight in English:</h4>
+        <tags-input ng-model="checkAnswersENG" placeholder="Enter a choice and press Enter"></tags-input>
+      </div>
+
+      <button class="btn btn-primary" ng-click="addQuestion()"> + Add question</button>
+      <hr \>
+      <h4>Template:</h4>
+      <ul ng-repeat="quest in questions">
+        <li>
+            {{quest.Text}} - {{quest.TextEN}}
+            <ul ng-repeat="answer in quest.Answers">
+              <li>{{answer.Text}} - {{answer.TextEN}}</li>
+            </ul>
+        </li>
       </ul>
-      Selected: <b>{{ selected.item }}</b>
   </div>
   <div class="modal-footer">
       <button class="btn btn-primary" ng-click="ok()">OK</button>
@@ -16,7 +62,6 @@
   </div>
   </script>
 
-  <button class="btn btn-default" ng-click="open()">Open me!</button>
-  <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
-  <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
-  <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+  <button class="btn btn-default" ng-click="open()">New template</button>
+
+  <!-- <div ng-show="selected">Selection from a modal: {{ selected }}</div> -->
