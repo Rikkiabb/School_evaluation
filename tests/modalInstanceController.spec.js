@@ -12,12 +12,16 @@ describe("ModalInstanceController", function(){
 	var toasterMock = {                    
 	        pop: jasmine.createSpy('toaster.pop')
 		};
+
+	var admFactoryMock = {
+			addTemplate: jasmine.createSpy('adminFactory.addTemplate')
+	};
 	
 	beforeEach(module("EvalApp"));
 
 	beforeEach(inject(function ($controller, $rootScope) {
 		$scope = $rootScope.$new();
-		controller = $controller("ModalInstanceController", {$scope: $scope, $modalInstance: modalInstanceMock, toaster: toasterMock});
+		controller = $controller("ModalInstanceController", {$scope: $scope, $modalInstance: modalInstanceMock, toaster: toasterMock, adminFactory: admFactoryMock});
 	}));
 
 	it("should initialize call the open function and initialize the modal instance", function(){
@@ -25,6 +29,10 @@ describe("ModalInstanceController", function(){
 		expect($scope.showMultiple).toBe(false);
 		expect($scope.multipleType).toBe(undefined);
 		expect($scope.questionType).toBe(undefined);
+		expect($scope.titleIS).toBe("");
+		expect($scope.titleENG).toBe("");
+		expect($scope.introIS).toBe("");
+		expect($scope.introENG).toBe("");
 		expect($scope.courseQuestions).toBeDefined();
 		expect($scope.answersIS).toBeDefined();
 		expect($scope.answersENG).toBeDefined();
@@ -33,7 +41,7 @@ describe("ModalInstanceController", function(){
 
 	it("should call change with type text and show variables should have right values", function(){
 		
-		$scope.change("text");
+		$scope.changeTab("text");
 
 		expect($scope.showText).toBe(true);
 		expect($scope.showMultiple).toBe(false);
@@ -42,7 +50,7 @@ describe("ModalInstanceController", function(){
 
 	it("should call change with type multiple and show variables should have right values", function(){
 		
-		$scope.change("multiple");
+		$scope.changeTab("multiple");
 
 		expect($scope.showText).toBe(false);
 		expect($scope.showMultiple).toBe(true);
@@ -204,12 +212,94 @@ describe("ModalInstanceController", function(){
 
 	});
 
-	it("should call the ok function and the dismiss function of the modalInstance", function(){
+	it("should call the ok function and initialize the template obj", function(){
+		
+
+		$scope.ok();
+		expect($scope.templateObj).toBeDefined();
+
+	});
+
+	it("should call the ok function and initialize the template obj with right values", function(){
+		
+		$scope.showText = true;
+		
+		//Set up the template information.
+		$scope.titleIS = "Titill";
+		$scope.titleENG = "Title";
+		$scope.introIS = "Inngangur";
+		$scope.introENG = "Intro";
+
+		//Add to the course array
+		$scope.questionType = "course";
+		$scope.textQuestionIS = "Spurning course";
+		$scope.textQuestionIS = "Question course";
+		$scope.addQuestion();
+
+		//Add to the teacher array
+		$scope.questionType = "teacher";
+		$scope.textQuestionIS = "Spurning teacher";
+		$scope.textQuestionIS = "Question teacher";
+		$scope.addQuestion();
+
+
+		$scope.ok();
+
+		var obj = $scope.templateObj;
+		expect(obj.Title).toBe("Titill");
+		expect(obj.TitleEN).toBe("Title");
+		expect(obj.IntroText).toBe("Inngangur");
+		expect(obj.IntroTextEN).toBe("Intro");
+		expect(obj.CourseQuestions.length).toBe(1);
+		expect(obj.TeacherQuestions.length).toBe(1);
+
+
+	});
+
+	it("should call the ok function and try to add the template", function(){
+
+		$scope.showText = true;
+		
+		//Set up the template information.
+		$scope.titleIS = "Titill";
+		$scope.titleENG = "Title";
+		$scope.introIS = "Inngangur";
+		$scope.introENG = "Intro";
+
+		//Add to the course array
+		$scope.questionType = "course";
+		$scope.textQuestionIS = "Spurning course";
+		$scope.textQuestionIS = "Question course";
+		$scope.addQuestion();
+
+		//Add to the teacher array
+		$scope.questionType = "teacher";
+		$scope.textQuestionIS = "Spurning teacher";
+		$scope.textQuestionIS = "Question teacher";
+		$scope.addQuestion();
+
+		var obj = {
+			Title: "Titill",
+			TitleEN: "Title",
+			IntroText: "Inngangur",
+			IntroTextEN: "Intro",
+			CourseQuestions: $scope.courseQuestions,
+			TeacherQuestions: $scope.teacherQuestions
+		}
+
+		$scope.ok();
+		expect(admFactoryMock.addTemplate).toHaveBeenCalledWith(obj);
+
+	});
+
+	it("should call the cancel function and the dismiss function of the modalInstance", function(){
 		
 		$scope.cancel();
 		expect(modalInstanceMock.dismiss).toHaveBeenCalledWith("cancel");
 
 	});
 
+
+	
 	
 });
