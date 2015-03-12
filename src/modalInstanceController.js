@@ -1,9 +1,11 @@
-angular.module('EvalApp').controller('ModalInstanceController', ["$scope", "$modalInstance", function ($scope, $modalInstance) {
+angular.module('EvalApp').controller('ModalInstanceController', ["$scope", "$modalInstance", "toaster", function ($scope, $modalInstance, toaster) {
 
 	$scope.showText = true;
 	$scope.showMultiple = false;
 	$scope.multipleType = undefined;
-	$scope.questions = [];
+	$scope.questionType = undefined;
+	$scope.courseQuestions = [];
+	$scope.teacherQuestions = [];
 	$scope.answersIS = [];
 	$scope.answersENG = [];
 
@@ -20,21 +22,35 @@ angular.module('EvalApp').controller('ModalInstanceController', ["$scope", "$mod
 	};
 
 	$scope.addQuestion = function(){
+		if($scope.questionType === undefined){
+			//TODO: error handling;
+		}
+
+		if($scope.questionType === "teacher"){
+			var id = $scope.teacherQuestions.length;
+		}
+		else if($scope.questionType === "course"){
+			var id = $scope.courseQuestions.length;
+		}
 		if($scope.showText){
 			 $scope.questObj = {
-				ID: $scope.questions.length,
+				ID: id,
 				Text: $scope.textQuestionIS,
 				TextEN: $scope.textQuestionENG,
 				ImageUrl: "",
 				type: "text"
 			};
 
-			$scope.questions.push($scope.questObj);
 			$scope.textQuestionIS = "";
 			$scope.textQuestionENG = "";
 		}
 		else if($scope.showMultiple){
 			
+			if($scope.multipleType === undefined){
+				toaster.pop('error', 'Error!', 'You have to select a type before creating the question.');
+				return;
+			}
+
 			$scope.answers = [];
 			if($scope.answersIS.length === $scope.answersENG.length){
 				
@@ -51,7 +67,7 @@ angular.module('EvalApp').controller('ModalInstanceController', ["$scope", "$mod
 				}
 
 				$scope.questObj = {
-					ID: $scope.questions.length,
+					ID: id,
 					Text: $scope.multipleQuestionIS,
 					TextEN: $scope.multipleQuestionENG,
 					ImageUrl: "",
@@ -59,17 +75,24 @@ angular.module('EvalApp').controller('ModalInstanceController', ["$scope", "$mod
 					Answers: $scope.answers
 				};
 				
-				$scope.questions.push($scope.questObj);
+				
 				$scope.answersIS = [];
 				$scope.answersENG = [];
 				$scope.multipleQuestionIS = "";
 				$scope.multipleQuestionENG = "";
 			}
 			else{
-				//TODO: ERROR MESSAGE
+				toaster.pop('error', 'Error!', 'Please have the same amount of English and Icelandic answers.');
 			}
 
 			
+		}
+
+		if($scope.questionType === "teacher"){
+			$scope.teacherQuestions.push($scope.questObj);
+		}
+		else if($scope.questionType === "course"){
+			$scope.courseQuestions.push($scope.questObj);
 		}
 
 	};

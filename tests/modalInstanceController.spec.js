@@ -7,20 +7,25 @@ describe("ModalInstanceController", function(){
 	        result: {
 	        	then: jasmine.createSpy('modalInstance.result.then')
 	        }
-	      };
+		};
+
+	var toasterMock = {                    
+	        pop: jasmine.createSpy('toaster.pop')
+		};
 	
 	beforeEach(module("EvalApp"));
 
 	beforeEach(inject(function ($controller, $rootScope) {
 		$scope = $rootScope.$new();
-		// Create a mock object for the modalInstance
-		controller = $controller("ModalInstanceController", {$scope: $scope, $modalInstance: modalInstanceMock});
+		controller = $controller("ModalInstanceController", {$scope: $scope, $modalInstance: modalInstanceMock, toaster: toasterMock});
 	}));
 
 	it("should initialize call the open function and initialize the modal instance", function(){
 		expect($scope.showText).toBe(true);
 		expect($scope.showMultiple).toBe(false);
-		expect($scope.questions).toBeDefined();
+		expect($scope.multipleType).toBe(undefined);
+		expect($scope.questionType).toBe(undefined);
+		expect($scope.courseQuestions).toBeDefined();
 		expect($scope.answersIS).toBeDefined();
 		expect($scope.answersENG).toBeDefined();
 
@@ -49,6 +54,7 @@ describe("ModalInstanceController", function(){
 		$scope.showText = true;
 		$scope.textQuestionIS = "Spurning";
 		$scope.textQuestionENG = "Question";
+		$scope.questionType = "course";
 		$scope.addQuestion();
 		expect($scope.questObj.ID).toBe(0);
 		expect($scope.questObj.Text).toBe("Spurning");
@@ -59,11 +65,21 @@ describe("ModalInstanceController", function(){
 
 	});
 
-	it("should call addQuestion with showText true and check if the question has been pushed to array", function(){
+	it("should call addQuestion with showText true and check if the question has been pushed to the course array", function(){
 		
 		$scope.showText = true;
+		$scope.questionType = "course";
 		$scope.addQuestion();
-		expect($scope.questions.length).toBe(1);
+		expect($scope.courseQuestions.length).toBe(1);
+
+	});
+
+	it("should call addQuestion with showText true and check if the question has been pushed to the teacher array", function(){
+		
+		$scope.showText = true;
+		$scope.questionType = "teacher";
+		$scope.addQuestion();
+		expect($scope.teacherQuestions.length).toBe(1);
 
 	});
 
@@ -78,15 +94,48 @@ describe("ModalInstanceController", function(){
 
 	});
 
+	it("should call addQuestion with showMultiple true and have multipleType undefined", function(){
+		
+		$scope.showText = false;
+		$scope.showMultiple = true;
+
+		$scope.answersIS = [{text: "svar1"}];
+		$scope.answersENG = [{text: "answer1"}];
+		$scope.addQuestion();
+		expect($scope.answers).not.toBeDefined();
+		expect($scope.questObj).not.toBeDefined();
+		expect(toasterMock.pop).toHaveBeenCalled();
+
+	});
+
+	it("should call addQuestion with showMultiple true and have multipleType undefined and not reset input fields", function(){
+		
+		$scope.showText = false;
+		$scope.showMultiple = true;
+		$scope.textQuestionIS = "Spurning";
+		$scope.textQuestionENG = "Question";
+		$scope.answersIS = [{text: "svar1"}];
+		$scope.answersENG = [{text: "answer1"}];
+		$scope.addQuestion();
+		expect($scope.textQuestionIS).toBe("Spurning");
+		expect($scope.textQuestionENG).toBe("Question");
+		expect($scope.answersIS[0].text).toBe("svar1");
+		expect($scope.answersENG[0].text).toBe("answer1");
+		
+
+	});
+
 	it("should call addQuestion with showMultiple true and have right objects and arrays initialized", function(){
 		
 		$scope.showText = false;
 		$scope.showMultiple = true;
+		$scope.multipleType = 'single';
 		$scope.answersIS = [{text: "svar1"}, {text: "svar2"}];
 		$scope.answersENG = [{text: "answer1"}];
 		$scope.addQuestion();
 		expect($scope.answers).toBeDefined();
 		expect($scope.questObj).not.toBeDefined();
+		expect(toasterMock.pop).toHaveBeenCalled();
 
 	});
 
@@ -94,6 +143,7 @@ describe("ModalInstanceController", function(){
 		
 		$scope.showText = false;
 		$scope.showMultiple = true;
+		$scope.multipleType = 'single';
 		$scope.answersIS = [{text: "svar1"}];
 		$scope.answersENG = [{text: "answer1"}];
 		$scope.addQuestion();
@@ -117,6 +167,7 @@ describe("ModalInstanceController", function(){
 		$scope.multipleQuestionIS = "Spurning";
 		$scope.multipleQuestionENG = "Question";
 		$scope.multipleType = "single";
+		$scope.questionType = "course";
 		$scope.addQuestion();
 		var obj = $scope.questObj;
 		expect(obj.ID).toBe(0);
@@ -124,7 +175,7 @@ describe("ModalInstanceController", function(){
 		expect(obj.TextEN).toBe("Question");
 		expect(obj.ImageUrl).toBe("");
 		expect(obj.type).toBe("single");
-		expect($scope.questions.length).toBe(1);
+		expect($scope.courseQuestions.length).toBe(1);
 
 	});
 
@@ -132,6 +183,7 @@ describe("ModalInstanceController", function(){
 		
 		$scope.showText = false;
 		$scope.showMultiple = true;
+		$scope.multipleType = "single";
 		$scope.answersIS = [{text: "svar1"}];
 		$scope.answersENG = [{text: "answer1"}];
 		$scope.multipleQuestionIS = "Spurning";
