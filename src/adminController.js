@@ -1,19 +1,44 @@
-angular.module("EvalApp").controller("AdminController", ["$scope", "$modal", function($scope, $modal){
+angular.module("EvalApp").controller("AdminController", ["$scope", "$modal", "adminFactory", 
+function($scope, $modal, adminFactory){
 
+	$scope.templates = [];
+	adminFactory.getTemplates(function(templates){
+		$scope.templates = templates;
+	});
 
-	 $scope.open = function (size) {
+	
+
+	
+	 $scope.newTemplate = function () {
 
 	    $scope.modalInstance = $modal.open({
-	      templateUrl: 'myModalContent.html',
-	      controller: 'ModalInstanceController',
-	      size: 'lg'
+	     	templateUrl: 'templateModalContent.html',
+	      	controller: 'TemplateController',
+	      	size: 'lg'
 	    });
 
-	    // modalInstance.result.then(function (selectedItem) {
-	    //   $scope.selected = selectedItem;
-	    // }, function () {
-	    //   $log.info('Modal dismissed at: ' + new Date());
-	    // });
+	    $scope.modalInstance.result.then(function () {
+	      	adminFactory.getTemplates(function(templates){
+				$scope.templates = templates;
+			});
+	    });
 	  };
+
+	  
+
+   $scope.getTemplateById = function (id) {
+
+   		$scope.modalInstance = $modal.open({
+	      	templateUrl: 'templateByIdModalContent.html',
+	      	controller: 'TemplateByIdController',
+	      	size: 'lg',
+	      	resolve: {
+        		ID: function () {
+          			return id;
+        		}
+      		}
+	    });
+   		
+   };
 
 }]);

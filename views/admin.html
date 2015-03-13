@@ -1,97 +1,127 @@
-<script type="text/ng-template" id="myModalContent.html">
-  <div class="modal-header">
-      <h3 class="modal-title">New Template</h3>
-  </div>
-  <div class="modal-body">
+<button class="btn btn-default" ng-click="newTemplate()">New template</button>
 
-       <div ng-show="!showTabs">
+<div class="well">
+  <h3>Templates</h3>
+  <ul ng-repeat="temp in templates">
+    <li><button class="btn btn-primary" ng-click="getTemplateById(temp.ID)">{{temp.Title}}</button></li>
+  </ul>
+</div>
 
-        <h4>Please enter a title in Icelandic:</h4>
-        <input type="text" ng-model="titleIS"/>
-        <h4>Please enter a title in English:</h4>
-        <input type="text" ng-model="titleENG"/>
-        <h4>Please enter a intro text in Icelandic:</h4>
-        <input type="text" ng-model="introIS"/>
-        <h4>Please enter a intro text in English:</h4>
-        <input type="text" ng-model="introENG"/>
+<script type="text/ng-template" id="templateModalContent.html">
+<div class="modal-header">
+    <h3 class="modal-title">New Template</h3>
+</div>
+<div class="modal-body">
 
-        <button class="btn btn-primary" ng-click="showTabs = !showTabs">Continue</button>
+     <div ng-show="!showTabs">
 
-      </div>
+      <h4>Please enter a title in Icelandic:</h4>
+      <input type="text" ng-model="titleIS"/>
+      <h4>Please enter a title in English:</h4>
+      <input type="text" ng-model="titleENG"/>
+      <h4>Please enter a intro text in Icelandic:</h4>
+      <input type="text" ng-model="introIS"/>
+      <h4>Please enter a intro text in English:</h4>
+      <input type="text" ng-model="introENG"/>
 
-      <div ng-show="showTabs">
-      <tabset justified="true">
-        <tab heading="Text" ng-click="changeTab('text')"></tab>
-        <tab heading="Multiple choice" ng-click="changeTab('multiple')"></tab>
-      </tabset>
+      <button class="btn btn-primary" ng-click="showTabs = !showTabs">Continue</button>
 
-      <div ng-show="showText">
+    </div>
 
-        <h4>I am creating a:</h4>
-        <input type="radio" ng-model="questionType" value="teacher">  Teacher question <br/>
-        <input type="radio" ng-model="questionType" value="course"> Course question <br/>
-        <h4>Please enter a question in Icelandic:</h4>
-        <input type="text" ng-model="textQuestionIS"/>
-        <h4>Please enter a question in English:</h4>
-        <input type="text" ng-model="textQuestionENG"/>
+    <div ng-show="showTabs">
+    <tabset justified="true">
+      <tab heading="Text" ng-click="changeTab('text')"></tab>
+      <tab heading="Multiple choice" ng-click="changeTab('multiple')"></tab>
+    </tabset>
 
-      </div>
+    <div ng-show="showText">
 
-      <div ng-show="showMultiple">
+      <h4>I am creating a:</h4>
+      <input type="radio" ng-model="questionType" value="teacher">  Teacher question <br/>
+      <input type="radio" ng-model="questionType" value="course"> Course question <br/>
+      <h4>Please enter a question in Icelandic:</h4>
+      <input type="text" ng-model="textQuestionIS"/>
+      <h4>Please enter a question in English:</h4>
+      <input type="text" ng-model="textQuestionENG"/>
 
-        <h4>I am creating a:</h4>
-        <input type="radio" ng-model="questionType" value="teacher">  Teacher question <br/>
-        <input type="radio" ng-model="questionType" value="course"> Course question <br/>
+    </div>
 
-        <h4>Select a type:</h4>
-        <input type="radio" ng-model="multipleType" value="single">  Radio <br/>
-        <input type="radio" ng-model="multipleType" value="multiple"> Check <br/>
+    <div ng-show="showMultiple">
 
-        <h4>Please enter a question in Icelandic:</h4>
-        <input type="text" ng-model="multipleQuestionIS"/>
-        <h4>Please enter a question in English:</h4>
-        <input type="text" ng-model="multipleQuestionENG"/>
-        <h4>Please enter choices ordered by weight in Icelandic:</h4>
-        <tags-input ng-model="answersIS" placeholder="Enter a choice and press Enter"></tags-input>
-        <h4>Please enter choices ordered by weight in English:</h4>
-        <tags-input ng-model="answersENG" placeholder="Enter a choice and press Enter"></tags-input>
-        
+      <h4>I am creating a:</h4>
+      <input type="radio" ng-model="questionType" value="teacher">  Teacher question <br/>
+      <input type="radio" ng-model="questionType" value="course"> Course question <br/>
 
-      </div>
-      <button class="btn btn-primary" ng-click="addQuestion()"> + Add question</button>
-      <hr \>
-      <h4>Template:</h4>
-      <h4>{{titleIS}} - {{titleENG}}</h4>
-      <h4>{{introIS}} - {{introENG}}</h4>
-      <h4>Course Questions:</h4>
-      <ul ng-repeat="quest in courseQuestions">
-        <li>
-            {{quest.Text}} - {{quest.TextEN}}
-            <ul ng-repeat="answer in quest.Answers">
-              <li>{{answer.Text}} - {{answer.TextEN}}</li>
-            </ul>
-        </li>
-      </ul>
-    <h4>Teacher questions:</h4>
-      <ul ng-repeat="teach in teacherQuestions">
-        <li>
-            {{teach.Text}} - {{teach.TextEN}}
-            <ul ng-repeat="answer in teach.Answers">
-              <li>{{answer.Text}} - {{answer.TextEN}}</li>
-            </ul>
-        </li>
-      </ul>
-      </div>
+      <h4>Select a type:</h4>
+      <input type="radio" ng-model="multipleType" value="single">  Radio <br/>
+      <input type="radio" ng-model="multipleType" value="multiple"> Check <br/>
 
+      <h4>Please enter a question in Icelandic:</h4>
+      <input type="text" ng-model="multipleQuestionIS"/>
+      <h4>Please enter a question in English:</h4>
+      <input type="text" ng-model="multipleQuestionENG"/>
+      <h4>Please enter choices ordered by weight in Icelandic:</h4>
+      <tags-input ng-model="answersIS" placeholder="Enter a choice and press Enter"></tags-input>
+      <h4>Please enter choices ordered by weight in English:</h4>
+      <tags-input ng-model="answersENG" placeholder="Enter a choice and press Enter"></tags-input>
       
-      
-  </div>
-  <div class="modal-footer">
-      <button class="btn btn-primary" ng-click="ok()">OK</button>
-      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-  </div>
-  </script>
 
-  <button class="btn btn-default" ng-click="open()">New template</button>
+    </div>
+    <button class="btn btn-primary" ng-click="addQuestion()"> + Add question</button>
+    <hr \>
+    <h4>Template:</h4>
+    <h4>{{titleIS}} - {{titleENG}}</h4>
+    <h4>{{introIS}} - {{introENG}}</h4>
+    <h4>Course Questions:</h4>
+    <ul ng-repeat="quest in courseQuestions">
+      <li>
+          {{quest.Text}} - {{quest.TextEN}}
+          <ul ng-repeat="answer in quest.Answers">
+            <li>{{answer.Text}} - {{answer.TextEN}}</li>
+          </ul>
+      </li>
+    </ul>
+  <h4>Teacher questions:</h4>
+    <ul ng-repeat="teach in teacherQuestions">
+      <li>
+          {{teach.Text}} - {{teach.TextEN}}
+          <ul ng-repeat="answer in teach.Answers">
+            <li>{{answer.Text}} - {{answer.TextEN}}</li>
+          </ul>
+      </li>
+    </ul>
+    </div>
+
+    
+    
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
+</script>
+
+<script type="text/ng-template" id="templateByIdModalContent.html">
+<div class="modal-header">
+    <h3 class="modal-title">New Template</h3>
+</div>
+<div class="modal-body">
+
+  <h1>{{template.Title}} - {{template.Title}}</h1>
+
+  <h2>Intro</h2>
+
+  <p>{{template.IntroText}}</p>
+
+  <p>{{template.IntroTextEN}}</p>
+
+
+    
+    
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="postEval()">Post</button>
+</div>
+</script>
 
   <!-- <div ng-show="selected">Selection from a modal: {{ selected }}</div> -->

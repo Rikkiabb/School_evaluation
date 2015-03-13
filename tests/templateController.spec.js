@@ -1,12 +1,10 @@
-describe("ModalInstanceController", function(){
+describe("TemplateController", function(){
 	var controller;
 	var $scope;
 	var modalInstanceMock = {                    
 	        close: jasmine.createSpy('modalInstance.close'),
-	        dismiss: jasmine.createSpy('modalInstance.dismiss'),
-	        result: {
-	        	then: jasmine.createSpy('modalInstance.result.then')
-	        }
+	        dismiss: jasmine.createSpy('modalInstance.dismiss')
+
 		};
 
 	var toasterMock = {                    
@@ -21,7 +19,7 @@ describe("ModalInstanceController", function(){
 
 	beforeEach(inject(function ($controller, $rootScope) {
 		$scope = $rootScope.$new();
-		controller = $controller("ModalInstanceController", {$scope: $scope, $modalInstance: modalInstanceMock, toaster: toasterMock, adminFactory: admFactoryMock});
+		controller = $controller("TemplateController", {$scope: $scope, $modalInstance: modalInstanceMock, toaster: toasterMock, adminFactory: admFactoryMock});
 	}));
 
 	it("should initialize call the open function and initialize the modal instance", function(){
