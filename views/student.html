@@ -1,0 +1,8 @@
+ <h2>My evaluations</h2>
+ <accordion ng-repeat="c in myCourses" ng-cloak>
+	  <accordion-group heading="{{c.Name}}" ng-repeat="e in myEval">
+		  <p ng-if="e.CourseID === c.CourseID" ng-cloak>
+		      {{e.TemplateName}}
+		  </p>
+	  </accordion-group>
+</accordion>
