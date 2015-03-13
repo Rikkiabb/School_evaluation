@@ -1,36 +1,23 @@
-angular.module("EvalApp").controller("LoginController", function($scope, $location, loginFactory, $http, SERVER, sessionService){
+angular.module("EvalApp").controller("LoginController", function($scope, $location, loginFactory, $http, SERVER, sessionService, toaster){
+
+	$scope.username = undefined;
+	$scope.password = undefined;
+
 	$scope.login = function($event){
 		if($event !== undefined){
 			if($event.keyCode !== 13){
 				return;
 			}
 		}
-		if($scope.username === ''){
-			console.log("ERORR");
+		if($scope.username === undefined){
+			toaster.pop('error', 'Error!', 'You have to select a username.');
 			return;
 		}
-		if($scope.password === ''){
-			console.log("ERORR");
+		if($scope.password === undefined){
+			toaster.pop('error', 'Error!', 'You have to select a password.');
 			return;
 		}
 			
-		loginFactory.login($scope.username, $scope.password, function(){
-			console.log(sessionService.getToken());
-		});
-		
+		loginFactory.login($scope.username, $scope.password);	
 	};
-
-	$scope.test = function (){
-
-		$http.get(SERVER + "evaluations")
-		.success(function(data){
-			console.log(data);
-		})
-		.error(function(data, status){
-			
-			console.log(status);
-		});
-
-	};
-
 });

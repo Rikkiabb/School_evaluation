@@ -1,6 +1,6 @@
 angular.module("EvalApp").factory('loginFactory', function($http, $location, studentFactory, SERVER, sessionService){
 	return{
-		login: function(username, password, callback){
+		login: function(username, password){
 			$http.post(SERVER + "login", {user: username, pass: password})
 				.success(function(data){
 					console.log(data);
@@ -14,7 +14,6 @@ angular.module("EvalApp").factory('loginFactory', function($http, $location, stu
 							});
 						});
 					}
-					callback();
 				})
 				.error(function(data, status){
 					if(status === 401){
