@@ -2,6 +2,7 @@ angular.module("EvalApp").factory('sessionService', function(){
 
 	
 	var authToken = null;
+	var user = {};
 	var courses = [];
 	var evaluations = [];
 
@@ -31,6 +32,14 @@ angular.module("EvalApp").factory('sessionService', function(){
 
 		getEvaluations: function(){
 			return evaluations;
+		},
+
+		setUser: function(_user){
+			user = _user;
+		},
+
+		getUser: function(){
+			return user;
 		}
 
 	};

@@ -4,9 +4,25 @@
   </div>
   <div class="modal-body">
 
+       <div ng-show="!showTabs">
+
+        <h4>Please enter a title in Icelandic:</h4>
+        <input type="text" ng-model="titleIS"/>
+        <h4>Please enter a title in English:</h4>
+        <input type="text" ng-model="titleENG"/>
+        <h4>Please enter a intro text in Icelandic:</h4>
+        <input type="text" ng-model="introIS"/>
+        <h4>Please enter a intro text in English:</h4>
+        <input type="text" ng-model="introENG"/>
+
+        <button class="btn btn-primary" ng-click="showTabs = !showTabs">Continue</button>
+
+      </div>
+
+      <div ng-show="showTabs">
       <tabset justified="true">
-        <tab heading="Text" ng-click="change('text')"></tab>
-        <tab heading="Multiple choice" ng-click="change('multiple')"></tab>
+        <tab heading="Text" ng-click="changeTab('text')"></tab>
+        <tab heading="Multiple choice" ng-click="changeTab('multiple')"></tab>
       </tabset>
 
       <div ng-show="showText">
@@ -39,13 +55,14 @@
         <tags-input ng-model="answersIS" placeholder="Enter a choice and press Enter"></tags-input>
         <h4>Please enter choices ordered by weight in English:</h4>
         <tags-input ng-model="answersENG" placeholder="Enter a choice and press Enter"></tags-input>
-
+        
 
       </div>
-
       <button class="btn btn-primary" ng-click="addQuestion()"> + Add question</button>
       <hr \>
       <h4>Template:</h4>
+      <h4>{{titleIS}} - {{titleENG}}</h4>
+      <h4>{{introIS}} - {{introENG}}</h4>
       <h4>Course Questions:</h4>
       <ul ng-repeat="quest in courseQuestions">
         <li>
@@ -64,6 +81,10 @@
             </ul>
         </li>
       </ul>
+      </div>
+
+      
+      
   </div>
   <div class="modal-footer">
       <button class="btn btn-primary" ng-click="ok()">OK</button>

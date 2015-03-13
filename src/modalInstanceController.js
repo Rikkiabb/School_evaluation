@@ -1,15 +1,21 @@
-angular.module('EvalApp').controller('ModalInstanceController', ["$scope", "$modalInstance", "toaster", function ($scope, $modalInstance, toaster) {
+angular.module('EvalApp').controller('ModalInstanceController', ["$scope", "$modalInstance", "toaster", "adminFactory",
+function ($scope, $modalInstance, toaster, adminFactory) {
 
 	$scope.showText = true;
+	$scope.showTabs = false;
 	$scope.showMultiple = false;
 	$scope.multipleType = undefined;
 	$scope.questionType = undefined;
+	$scope.titleIS = "";
+	$scope.titleENG = "";
+	$scope.introIS = "";
+	$scope.introENG = "";
 	$scope.courseQuestions = [];
 	$scope.teacherQuestions = [];
 	$scope.answersIS = [];
 	$scope.answersENG = [];
 
-	$scope.change = function(type){
+	$scope.changeTab = function(type){
 
 		if(type === "text"){
 			$scope.showText = true;
@@ -99,7 +105,17 @@ angular.module('EvalApp').controller('ModalInstanceController', ["$scope", "$mod
 
 
 	$scope.ok = function () {
-		console.log("TODO: SAVE()");
+		
+		$scope.templateObj = {
+			Title: $scope.titleIS,
+			TitleEN: $scope.titleENG,
+			IntroText: $scope.introIS,
+			IntroTextEN: $scope.introENG,
+			CourseQuestions: $scope.courseQuestions,
+			TeacherQuestions: $scope.teacherQuestions
+		};
+
+		adminFactory.addTemplate($scope.templateObj);
 		$modalInstance.close();
 	};
 
