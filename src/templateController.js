@@ -1,4 +1,4 @@
-angular.module('EvalApp').controller('ModalInstanceController', ["$scope", "$modalInstance", "toaster", "adminFactory",
+angular.module('EvalApp').controller('TemplateController', ["$scope", "$modalInstance", "toaster", "adminFactory",
 function ($scope, $modalInstance, toaster, adminFactory) {
 
 	$scope.showText = true;
