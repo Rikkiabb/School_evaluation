@@ -8,8 +8,8 @@ function ($scope, $modalInstance, adminFactory, ID) {
 	});
 
 	$scope.postEval = function(){
-		$scope.startDate = new Date();
-		$scope.endDate = new Date();
+		$scope.startDate = new Date("October 13, 2013 11:13:00");
+		$scope.endDate = new Date("October 13, 2015 11:13:00");
 
 		$scope.newEval = {
 			TemplateID: ID,

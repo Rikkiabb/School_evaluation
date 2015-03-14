@@ -2,10 +2,30 @@
  <accordion>
  	<accordion-group heading="{{c.Name}}" ng-repeat="c in myCourses">
 	  <div ng-repeat="e in myEval">
-		  <p ng-if="e.CourseID === c.CourseID" ng-cloak>
+		  <button ng-click="getEvalByID(e.ID)" ng-if="e.CourseID === c.CourseID" ng-cloak>
 		      {{e.TemplateName}}
-		  </p>
+		  </button>
 		</div>
 	  </accordion-group>
 </accordion>
 <evaluation-question ng-model="test"></evaluation-question>
+
+
+<script type="text/ng-template" id="evaluationModalContent.html">
+<div class="modal-header">
+    <h3 class="modal-title">{{template.Title}}</h3>
+    <p>{{template.IntroText}}</p>
+</div>
+<div class="modal-body">
+	<div ng-repeat="c in template.CourseQuestions">
+		<div evaluation-question="c"></div>
+	</div>
+	<div ng-repeat="c in template.TeacherQuestions">
+		<div evaluation-question="c"></div>
+	</div>
+	
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="postEval()">Post</button>
+</div>
+</script>

@@ -8,8 +8,8 @@ angular.module("EvalApp").factory("studentFactory", ["$http", "SERVER", "session
 				.success(function(data){
 					console.log("COURSE");
 					console.log(data);
-					sessionService.setCourses(data);
-					callback();
+					//sessionService.setCourses(data);
+					callback(data);
 				})
 				.error(function(data, status){
 					if(status === 401){
@@ -24,8 +24,8 @@ angular.module("EvalApp").factory("studentFactory", ["$http", "SERVER", "session
 				.success(function(data){
 					console.log("EVAL");
 					console.log(data);
-					sessionService.setEvaluations(data);
-					callback();
+					//sessionService.setEvaluations(data);
+					callback(data);
 				})
 				.error(function(data, status){
 					if(status === 401){
@@ -33,7 +33,35 @@ angular.module("EvalApp").factory("studentFactory", ["$http", "SERVER", "session
 					}
 				});
 
-		}
+		},
+
+		getTemplateById: function(id, callback){
+
+			$http.get(SERVER + "evaluationtemplates/" + id)
+				.success(function(data){
+					console.log(data);
+					callback(data);
+				})
+				.error(function(data, status){
+					if(status === 401){
+						console.log("Error");
+					}
+				});
+		},
+
+		getEvaliationById: function(id, callback){
+
+			$http.get(SERVER + "evaluations/" + id)
+				.success(function(data){
+					console.log(data);
+					callback(data);
+				})
+				.error(function(data, status){
+					if(status === 401){
+						console.log("Error");
+					}
+				});
+		},
 
 	}
 

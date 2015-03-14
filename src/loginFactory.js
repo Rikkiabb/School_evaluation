@@ -12,11 +12,7 @@ angular.module("EvalApp").factory('loginFactory', function($http, $location, stu
 						$location.path("/admin");
 					}
 					else if (data.User.Role = "student"){
-						studentFactory.courses(function(mc){
-							studentFactory.evaluations(function(mc){
-								$location.path("/student");
-							});
-						});
+						$location.path("/student");
 					}
 				})
 				.error(function(data, status){

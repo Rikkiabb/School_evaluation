@@ -16,22 +16,22 @@ angular.module("EvalApp").factory('sessionService', function(){
 			return authToken;
 		},
 
-		setCourses: function(course){
-			courses = course;
-		},
+		// setCourses: function(course){
+		// 	courses = course;
+		// },
 
-		getCourses: function(){
-			return courses;
-		},
+		// getCourses: function(){
+		// 	return courses;
+		// },
 
-		setEvaluations: function(evaluation){
-			//evaluations = [{"ID":1,"CourseID":"T-215-STY1","CourseName":"Stýrikerfi","CourseNameEN":"Web Programming II","TemplateName":"Heimska fucking temp", "TemplateNameEN":"STUPID FUCKING TEMP","Semester":"RIGHT MOTHERFUCKING NOW!"}];
-			evaluations = evaluation;
-		},
+		// setEvaluations: function(evaluation){
+		// 	//evaluations = [{"ID":1,"CourseID":"T-215-STY1","CourseName":"Stýrikerfi","CourseNameEN":"Web Programming II","TemplateName":"Heimska fucking temp", "TemplateNameEN":"STUPID FUCKING TEMP","Semester":"RIGHT MOTHERFUCKING NOW!"}];
+		// 	evaluations = evaluation;
+		// },
 
-		getEvaluations: function(){
-			return evaluations;
-		},
+		// getEvaluations: function(){
+		// 	return evaluations;
+		// },
 
 		setUser: function(_user){
 			user = _user;
