@@ -9,7 +9,6 @@ angular.module("EvalApp").factory('sessionService', function(){
 	return{
 
 		setToken: function(token){
-
 			authToken = token;
 		},
 
@@ -26,8 +25,8 @@ angular.module("EvalApp").factory('sessionService', function(){
 		},
 
 		setEvaluations: function(evaluation){
-			evaluations = [{"ID":1,"CourseID":"T-427-WEPO","CourseName":"Vefforritun II","CourseNameEN":"Web Programming II","TemplateName":"Heimska fucking temp", "TemplateNameEN":"STUPID FUCKING TEMP","Semester":"RIGHT MOTHERFUCKING NOW!"}];
-			// evaluations = evaluation;
+			//evaluations = [{"ID":1,"CourseID":"T-215-STY1","CourseName":"Stýrikerfi","CourseNameEN":"Web Programming II","TemplateName":"Heimska fucking temp", "TemplateNameEN":"STUPID FUCKING TEMP","Semester":"RIGHT MOTHERFUCKING NOW!"}];
+			evaluations = evaluation;
 		},
 
 		getEvaluations: function(){

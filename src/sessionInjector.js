@@ -13,6 +13,6 @@ angular.module("EvalApp").factory("sessionInjector", function(sessionService){
 });
 
 angular.module("EvalApp").config(['$httpProvider', function($httpProvider) {  
-    console.log("HELLO");
+    //console.log("HELLO");
     $httpProvider.interceptors.push('sessionInjector');
 }]);
