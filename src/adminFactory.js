@@ -43,11 +43,10 @@ angular.module("EvalApp").factory("adminFactory", ["$http", "SERVER", function($
 				});
 		},
 
-		createEvaluation: function(obj, callback){
+		createEvaluation: function(obj){
 			$http.post(SERVER + "evaluations/", obj)
 				.success(function(data){
 					console.log(data);
-					callback();
 				})
 				.error(function(data, status){
 					if(status === 401){

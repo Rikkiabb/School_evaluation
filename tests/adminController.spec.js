@@ -20,12 +20,17 @@ describe("AdminController", function(){
 		
 	});
 
-	it("should call the open function and initialize the modal instance", function(){
+	it("should call the new template function and initialize the modal instance", function(){
 		$scope.newTemplate();
 		expect($scope.modalInstance).toBeDefined();
 		
 	});
 
+	it("should try to get a template by id and initialize the modal instance", function(){
+		$scope.getTemplateById();
+		expect($scope.modalInstance).toBeDefined();
+		
+	});
 
 
 	

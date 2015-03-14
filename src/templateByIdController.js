@@ -8,19 +8,18 @@ function ($scope, $modalInstance, adminFactory, ID) {
 	});
 
 	$scope.postEval = function(){
-		var startDate = new Date();
-		var endDate = new Date();
+		$scope.startDate = new Date();
+		$scope.endDate = new Date();
 
-		var newEval = {
+		$scope.newEval = {
 			TemplateID: ID,
-			StartDate: startDate.toISOString(),
-			EndDate: endDate.toISOString()
+			StartDate: $scope.startDate.toISOString(),
+			EndDate: $scope.endDate.toISOString()
 
 		};
 
-		adminFactory.createEvaluation(newEval, function(){
-			console.log("YES");
-		})
+		adminFactory.createEvaluation($scope.newEval);
+		$modalInstance.close();
 	};
 
 }]);
