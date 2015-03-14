@@ -34,6 +34,7 @@ module.exports = function(config) {
         "src/studentController.js",
         "src/studentFactory.js",
         "src/templateByIdController.js",
+        "directives/evaluationQuestionDirective.js",
         "bower_components/moment/min/moment.min.js",
         "node_modules/angular-mocks/angular-mocks.js",
         "bower_components/angular-moment/angular-moment.min.js",
