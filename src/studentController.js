@@ -12,25 +12,33 @@ function($scope, studentFactory, $modal){
 		$scope.myEval = eval;
 	});
 
-	$scope.getEvalByID = function (id){
+	$scope.getEvalByID = function (id, course, semester){
 
-		studentFactory.getEvaliationById(id, function (eval){
+		studentFactory.getEvaluationById(id, function (eval){
 
 			studentFactory.getTemplateById(eval.TemplateID , function (temp) {
 
-				$scope.modalInstance = $modal.open({
-			      	templateUrl: 'evaluationModalContent.html',
-			      	controller: 'EvaluationController',
-			      	size: 'lg',
-			      	resolve: {
-		        		TEMPLATE: function () {
-		          			return temp;
-		        		}
-		      		}
-		    	});
+				studentFactory.getTeachers(course, semester, function(teach) {
+					console.log(course, semester, "++++++++");
+					$scope.modalInstance = $modal.open({
+				      	templateUrl: 'evaluationModalContent.html',
+				      	controller: 'EvaluationController',
+				      	size: 'lg',
+				      	resolve: {
+			        		TEMPLATE: function () {
+			          			return {
+			          				template: temp,
+			          				teachers: teach
+			          			}
+			        		}
+			      		}
+			    	});
+				});
+
+
 			});
 
-		})
+		});
 
 	};
 	// $scope.myCourses = sessionService.getCourses();

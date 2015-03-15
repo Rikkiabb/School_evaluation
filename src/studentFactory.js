@@ -49,7 +49,7 @@ angular.module("EvalApp").factory("studentFactory", ["$http", "SERVER", "session
 				});
 		},
 
-		getEvaliationById: function(id, callback){
+		getEvaluationById: function(id, callback){
 
 			$http.get(SERVER + "evaluations/" + id)
 				.success(function(data){
@@ -62,6 +62,19 @@ angular.module("EvalApp").factory("studentFactory", ["$http", "SERVER", "session
 					}
 				});
 		},
+
+		getTeachers: function(cID, semester, callback) {
+			$http.get(SERVER + "courses/" + cID + "/" + semester + "/teachers")
+				.success(function(data){
+					console.log(data);
+					callback(data);
+				})
+				.error(function(data, status){
+					if(status === 401){
+						console.log("Error");
+					}
+				});
+		}
 
 	}
 

@@ -1,4 +1,5 @@
 angular.module("EvalApp").directive("evaluationQuestion", function ($window){
+	var url;
 	return {
 		restrict: "A",
 
@@ -6,21 +7,27 @@ angular.module("EvalApp").directive("evaluationQuestion", function ($window){
 			templ: "=evaluationQuestion"
 		},
 
-		templateUrl: "templates/evalQuestion.html",
 
 		link: function(scope, element, attr){
-			console.log(scope.templ, "<-------");
-			if(scope.templ.Type === 'text'){
-				scope.test = "text";
-			}
-			else if(scope.templ.Type === 'single'){
-				scope.test = "single";
-			}
-			else if(scope.templ.Type === 'multiple'){
-				scope.test = "multiple";
+			
+			scope.contentUrl = function () {
+				return "templates/" + scope.templ.Type + "EvalQuestion.html";
 			}
 
-		}
+			console.log(scope.templ, "<-------");
+			scope.question = scope.templ.Text;
+			scope.qType = scope.templ.Type;
+			if(scope.templ.Type === 'text'){
+
+			}
+			else if(scope.templ.Type === 'single' || scope.templ.Type === 'multiple'){
+				scope.answers = scope.templ.Answers;
+			}
+
+		},
+
+		template: "<div ng-include='contentUrl()'></div>"
+
 	}
 	
 });

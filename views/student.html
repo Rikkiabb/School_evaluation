@@ -2,7 +2,7 @@
  <accordion>
  	<accordion-group heading="{{c.Name}}" ng-repeat="c in myCourses">
 	  <div ng-repeat="e in myEval">
-		  <button ng-click="getEvalByID(e.ID)" ng-if="e.CourseID === c.CourseID" ng-cloak>
+		  <button ng-click="getEvalByID(e.ID, e.CourseID, e.Semester)" ng-if="e.CourseID === c.CourseID" ng-cloak>
 		      {{e.TemplateName}}
 		  </button>
 		</div>
@@ -17,11 +17,18 @@
     <p>{{template.IntroText}}</p>
 </div>
 <div class="modal-body">
-	<div ng-repeat="c in template.CourseQuestions">
-		<div evaluation-question="c"></div>
+	<div class="well">
+		<div ng-repeat="c in template.CourseQuestions" >
+			<div evaluation-question="c"></div>
+		</div>
 	</div>
-	<div ng-repeat="c in template.TeacherQuestions">
-		<div evaluation-question="c"></div>
+	<div class="well">
+		<div ng-repeat="teach in teachers">
+			<h3>{{teach.FullName}}</h3>
+			<div ng-repeat="c in template.TeacherQuestions">
+				<div evaluation-question="c"></div>
+			</div>
+		</div>
 	</div>
 	
 </div>

@@ -2,7 +2,9 @@ angular.module('EvalApp').controller('EvaluationController', ["$scope", "$modalI
 function ($scope, $modalInstance, toaster, studentFactory, TEMPLATE) {
 
 
-	$scope.template = TEMPLATE;
+	$scope.template = TEMPLATE.template;
+	$scope.teachers = TEMPLATE.teachers;
+
 
 	console.log("Eval Controller:", $scope.template);
 
