@@ -19,22 +19,10 @@
 </div>
 <div class="modal-body">
 	<div class="well">
-		<div ng-repeat="c in template.CourseQuestions" >
+		<div ng-repeat="c in courseQ" >
 			<div evaluation-question="c" q-index="{{$index}}"></div>
 		</div>
 	</div>
-	<div class="well">
-		<div ng-repeat="teach in teachers">
-			<h3>{{teach.FullName}}</h3>
-			<div ng-repeat="t in template.TeacherQuestions">
-				<div evaluation-question="t" q-index="{{$parent.$index}}"></div>
-			</div>
-		</div>
-	</div>
-	<div ng-model="bla">
-	<input type="text">
-	</div>
-	<p>{{bla}}</p>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="save()">Save</button>

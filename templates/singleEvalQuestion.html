@@ -1,5 +1,4 @@
 <p> {{question}}</p>
 <div ng-repeat="ans in answers">
-	<input type="radio" ng-model="QID"/> {{ans.Text}}
+	<input  type="radio" name="templ.question.ID" ng-model=templ.answers value="{{$index}}"/> {{ans.Text}}
 </div>
-<p>{{QID}}</p>

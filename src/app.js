@@ -1,5 +1,5 @@
 
-angular.module("EvalApp", ['ngRoute', 'angularMoment', 'toaster', 'ui.bootstrap', 'ngTagsInput']);
+angular.module("EvalApp", ['ngRoute', 'angularMoment', 'toaster', 'ui.bootstrap', 'ngTagsInput', 'checklist-model']);
 
 angular.module("EvalApp").constant("SERVER", "http://dispatch.ru.is/h15/api/v1/");
 

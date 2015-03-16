@@ -1,26 +1,47 @@
 angular.module('EvalApp').controller('EvaluationController', ["$scope", "$modalInstance", "toaster", "studentFactory", "TEMPLATE",
 function ($scope, $modalInstance, toaster, studentFactory, TEMPLATE) {
 
+	$scope.courseQ = [];
+	var array = TEMPLATE.template.CourseQuestions;
+	for(var i = 0; i < array.length; i++){
+		var obj = {
+			question: array[i],
+			answers: []
+		};
+
+		$scope.courseQ.push(obj);
+	}
 
 	$scope.template = TEMPLATE.template;
+	
+	$scope.teacherQ = TEMPLATE.template.TeacherQuestions;
 	$scope.teachers = TEMPLATE.teachers;
 
+	// $scope.changeCheck = function(quest, value){
+
+	// 	if(!quest.answers.indexOf(value) !== -1){
+
+	// 		quest.answers.push(value);
+	// 	}
+	// }
 
 
 	$scope.save = function () {
 
-		var arr = $scope.template.TeacherQuestions;
+		var arr = $scope.courseQ;
 		for(var i = 0; i < arr.length; i++){
 			
-			if(arr[i].Type === "text"){
-				var ID = arr[i].ID;
-				var ID2 = 0;
-				var strengur = "text_" + ID + "_" + ID2;
+			if(arr[i].question.Type === "text"){
 				
-				console.log(eval("$scope.text_" + ID + "_" + ID2));
+				console.log($scope.courseQ[i].answers);
 				
-				
+			}
+			else if(arr[i].question.Type === "single"){
+				console.log($scope.courseQ[i].answers[0]);
+			}
+			else if(arr[i].question.Type === "multiple"){
 
+				console.log($scope.courseQ[i].answers);
 			}
 
 		}

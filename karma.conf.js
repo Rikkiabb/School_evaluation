@@ -23,6 +23,7 @@ module.exports = function(config) {
         "bower_components/angularjs-toaster/toaster.js",
         "bower_components/angular-bootstrap/ui-bootstrap.min.js",
         "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
+        "bower_components/checklist-model/checklist-model.js",
         "src/app.js",
         "src/sessionService.js",
         "src/sessionInjector.js",
