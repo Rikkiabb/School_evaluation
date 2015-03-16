@@ -6,7 +6,28 @@ function ($scope, $modalInstance, toaster, studentFactory, TEMPLATE) {
 	$scope.teachers = TEMPLATE.teachers;
 
 
-	console.log("Eval Controller:", $scope.template);
+
+	$scope.save = function () {
+
+		var arr = $scope.template.TeacherQuestions;
+		for(var i = 0; i < arr.length; i++){
+			
+			if(arr[i].Type === "text"){
+				var ID = arr[i].ID;
+				var ID2 = 0;
+				var strengur = "text_" + ID + "_" + ID2;
+				
+				console.log(eval("$scope.text_" + ID + "_" + ID2));
+				
+				
+
+			}
+
+		}
+
+		
+
+	}
 
 	// $modalInstance.close();
 

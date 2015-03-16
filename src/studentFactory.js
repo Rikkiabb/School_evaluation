@@ -7,7 +7,7 @@ angular.module("EvalApp").factory("studentFactory", ["$http", "SERVER", "session
 			$http.get(SERVER + "my/courses")
 				.success(function(data){
 					console.log("COURSE");
-					console.log(data);
+					// console.log(data);
 					//sessionService.setCourses(data);
 					callback(data);
 				})
@@ -22,8 +22,8 @@ angular.module("EvalApp").factory("studentFactory", ["$http", "SERVER", "session
 		evaluations: function(callback){
 			$http.get(SERVER + "my/evaluations")
 				.success(function(data){
-					console.log("EVAL");
-					console.log(data);
+					// console.log("EVAL");
+					// console.log(data);
 					//sessionService.setEvaluations(data);
 					callback(data);
 				})
@@ -39,7 +39,7 @@ angular.module("EvalApp").factory("studentFactory", ["$http", "SERVER", "session
 
 			$http.get(SERVER + "evaluationtemplates/" + id)
 				.success(function(data){
-					console.log(data);
+					// console.log(data);
 					callback(data);
 				})
 				.error(function(data, status){
@@ -53,7 +53,7 @@ angular.module("EvalApp").factory("studentFactory", ["$http", "SERVER", "session
 
 			$http.get(SERVER + "evaluations/" + id)
 				.success(function(data){
-					console.log(data);
+					// console.log(data);
 					callback(data);
 				})
 				.error(function(data, status){
@@ -66,7 +66,7 @@ angular.module("EvalApp").factory("studentFactory", ["$http", "SERVER", "session
 		getTeachers: function(cID, semester, callback) {
 			$http.get(SERVER + "courses/" + cID + "/" + semester + "/teachers")
 				.success(function(data){
-					console.log(data);
+					// console.log(data);
 					callback(data);
 				})
 				.error(function(data, status){

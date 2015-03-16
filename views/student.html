@@ -8,7 +8,8 @@
 		</div>
 	  </accordion-group>
 </accordion>
-<evaluation-question ng-model="test"></evaluation-question>
+
+
 
 
 <script type="text/ng-template" id="evaluationModalContent.html">
@@ -19,20 +20,23 @@
 <div class="modal-body">
 	<div class="well">
 		<div ng-repeat="c in template.CourseQuestions" >
-			<div evaluation-question="c"></div>
+			<div evaluation-question="c" q-index="{{$index}}"></div>
 		</div>
 	</div>
 	<div class="well">
 		<div ng-repeat="teach in teachers">
 			<h3>{{teach.FullName}}</h3>
-			<div ng-repeat="c in template.TeacherQuestions">
-				<div evaluation-question="c"></div>
+			<div ng-repeat="t in template.TeacherQuestions">
+				<div evaluation-question="t" q-index="{{$parent.$index}}"></div>
 			</div>
 		</div>
 	</div>
-	
+	<div ng-model="bla">
+	<input type="text">
+	</div>
+	<p>{{bla}}</p>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="postEval()">Post</button>
+    <button class="btn btn-primary" ng-click="save()">Save</button>
 </div>
 </script>
