@@ -7,7 +7,7 @@ angular.module("EvalApp").directive("evaluationQuestion", function ($window, $co
 		},
 
 		link: function(scope, element, attr){
-			
+			// console.log("---------->",scope.templ.ID,"<---------")
 			scope.contentUrl = function () {
 				if(scope.templ.question.Type === "multiple"){
 					return "templates/" + scope.templ.question.Type + "eEvalQuestion.html";
@@ -21,7 +21,7 @@ angular.module("EvalApp").directive("evaluationQuestion", function ($window, $co
 			
 			scope.qType = scope.templ.question.Type;
 			// console.log(scope.qType);
-			if(scope.templ.Type === 'text'){
+			if(scope.templ.question.Type === 'text'){
 				// scope.QID = "text_" + scope.templ.ID + "_" + index;
 				// var quest = angular.element("<div><p>" + scope.question + "</p>");
 				// var input = angular.element("<input type='text' ng-model='" + scope.QID + "' ></input></div>");

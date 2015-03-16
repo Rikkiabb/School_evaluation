@@ -20,8 +20,18 @@
 <div class="modal-body">
 	<div class="well">
 		<div ng-repeat="c in courseQ" >
-			<div evaluation-question="c" q-index="{{$index}}"></div>
+			<div evaluation-question="c" q-index=0></div>
 		</div>
+	</div>
+	<div class="well">
+
+			<div ng-repeat="t in teacherQ" >
+				<div ng-show="t.tName !== ''">
+					<h3>{{t.tName}}</h3>
+				</div>
+				<div evaluation-question="t" q-index={{index}}></div>
+			</div>
+		
 	</div>
 </div>
 <div class="modal-footer">
