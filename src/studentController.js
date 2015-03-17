@@ -12,6 +12,7 @@ function($scope, studentFactory, $modal){
 		$scope.myEval = eval;
 	});
 
+
 	$scope.getEvalByID = function (id, course, semester){
 
 		studentFactory.getEvaluationById(id, function (eval){
@@ -28,17 +29,23 @@ function($scope, studentFactory, $modal){
 			        		TEMPLATE: function () {
 			          			return {
 			          				template: temp,
-			          				teachers: teach
+			          				teachers: teach,
+			          				course: course,
+			          				semester: semester,
+			          				evalID: id
 			          			}
 			        		}
 			      		}
+			      // 		$scope.modalInstance.result.then(function () {
+	      					
+	    				// });
 			    	});
 				});
-
 
 			});
 
 		});
+
 
 	};
 	// $scope.myCourses = sessionService.getCourses();
