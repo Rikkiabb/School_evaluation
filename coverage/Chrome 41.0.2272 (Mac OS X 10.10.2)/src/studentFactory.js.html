@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/studentFactory.js</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="../prettify.css">
+
+    <link rel="stylesheet" href="../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">src/studentFactory.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">17.39% <small>(4 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">18.75% <small>(3 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">17.39% <small>(4 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">src/</a> &#187; studentFactory.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module("EvalApp").factory("studentFactory", ["$http", "SERVER", "sessionService", 
+	function($http, SERVER, sessionService){
+&nbsp;
+	return{
+		courses: function(callback){
+&nbsp;
+			$http.get(SERVER + "my/courses")
+				.success(<span class="fstat-no" title="function not covered" >function(data){</span>
+<span class="cstat-no" title="statement not covered" >					console.log("COURSE");</span>
+					// console.log(data);
+					//sessionService.setCourses(data);
+<span class="cstat-no" title="statement not covered" >					callback(data);</span>
+				})
+				.error(<span class="fstat-no" title="function not covered" >function(data, status){</span>
+<span class="cstat-no" title="statement not covered" >					if(status === 401){</span>
+<span class="cstat-no" title="statement not covered" >						console.log("Error");</span>
+					}
+				});
+&nbsp;
+		},
+&nbsp;
+		evaluations: function(callback){
+			$http.get(SERVER + "my/evaluations")
+				.success(<span class="fstat-no" title="function not covered" >function(data){</span>
+					// console.log("EVAL");
+					// console.log(data);
+					//sessionService.setEvaluations(data);
+<span class="cstat-no" title="statement not covered" >					callback(data);</span>
+				})
+				.error(<span class="fstat-no" title="function not covered" >function(data, status){</span>
+<span class="cstat-no" title="statement not covered" >					if(status === 401){</span>
+<span class="cstat-no" title="statement not covered" >						console.log("Error");</span>
+					}
+				});
+&nbsp;
+		},
+&nbsp;
+		getTemplateById: <span class="fstat-no" title="function not covered" >function(id, callback){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			$http.get(SERVER + "evaluationtemplates/" + id)</span>
+				.success(<span class="fstat-no" title="function not covered" >function(data){</span>
+					// console.log(data);
+<span class="cstat-no" title="statement not covered" >					callback(data);</span>
+				})
+				.error(<span class="fstat-no" title="function not covered" >function(data, status){</span>
+<span class="cstat-no" title="statement not covered" >					if(status === 401){</span>
+<span class="cstat-no" title="statement not covered" >						console.log("Error");</span>
+					}
+				});
+		},
+&nbsp;
+		getEvaluationById: <span class="fstat-no" title="function not covered" >function(id, callback){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			$http.get(SERVER + "evaluations/" + id)</span>
+				.success(<span class="fstat-no" title="function not covered" >function(data){</span>
+					// console.log(data);
+<span class="cstat-no" title="statement not covered" >					callback(data);</span>
+				})
+				.error(<span class="fstat-no" title="function not covered" >function(data, status){</span>
+<span class="cstat-no" title="statement not covered" >					if(status === 401){</span>
+<span class="cstat-no" title="statement not covered" >						console.log("Error");</span>
+					}
+				});
+		},
+&nbsp;
+		getTeachers: <span class="fstat-no" title="function not covered" >function(cID, semester, callback) {</span>
+<span class="cstat-no" title="statement not covered" >			$http.get(SERVER + "courses/" + cID + "/" + semester + "/teachers")</span>
+				.success(<span class="fstat-no" title="function not covered" >function(data){</span>
+					// console.log(data);
+<span class="cstat-no" title="statement not covered" >					callback(data);</span>
+				})
+				.error(<span class="fstat-no" title="function not covered" >function(data, status){</span>
+<span class="cstat-no" title="statement not covered" >					if(status === 401){</span>
+<span class="cstat-no" title="statement not covered" >						console.log("Error");</span>
+					}
+				});
+		}
+&nbsp;
+	}
+&nbsp;
+}]);</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Mar 17 2015 12:57:32 GMT+0000 (GMT)</div>
+</div>
+
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+
+<script src="../sorter.js"></script>
+</body>
+</html>
