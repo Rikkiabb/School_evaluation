@@ -2,14 +2,25 @@ angular.module("EvalApp").controller("AdminController", ["$scope", "$modal", "ad
 function($scope, $modal, adminFactory){
 
 	$scope.templates = [];
+	$scope.evaluations = [];
+	$scope.showStatus = "closed";
+
+
 	adminFactory.getTemplates(function(templates){
 		$scope.templates = templates;
 	});
 
-	
+	adminFactory.getEvaluations(function (evaluations){
+		$scope.evaluations = evaluations;
+		console.log("EVALS", $scope.evaluations);
+	});
 
+	$scope.changeTab = function(status){
+		$scope.showStatus = status;
+		console.log($scope.showStatus);
+	}
 	
-	 $scope.newTemplate = function () {
+	$scope.newTemplate = function () {
 
 	    $scope.modalInstance = $modal.open({
 	     	templateUrl: 'templateModalContent.html',
@@ -22,7 +33,7 @@ function($scope, $modal, adminFactory){
 				$scope.templates = templates;
 			});
 	    });
-	  };
+	};
 
 	  
 
@@ -40,5 +51,22 @@ function($scope, $modal, adminFactory){
 	    });
    		
    };
+
+   $scope.getResults = function (id) {
+
+   		adminFactory.getEvalResults(id, function(res){
+   			$scope.modalInstance = $modal.open({
+	      	templateUrl: 'ResultModalContent.html',
+	      	controller: 'ResultController',
+	      	size: 'lg',
+	      	resolve: {
+        		RESULT: function () {
+          			return res;
+        		}
+      		}
+	    });
+   		})
+
+   }
 
 }]);
