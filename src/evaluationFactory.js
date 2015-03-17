@@ -3,15 +3,17 @@ angular.module("EvalApp").factory("evaluationFactory", ["$http", "SERVER", funct
 	return {
 
 		addEvalQuestion: function(course, semester, evalID, question){
-			$http.post(SERVER + "courses/" + course + "/" + semester + "/evaluations/" + evalID, question)
-				.success(function(data){
-					console.log("VIRKAR!!!!!");
-				})
-				.error(function(data, status){
-					if(status === 401){
-						console.log("Error", status);
-					}
-				});
+
+			console.log("EVALUATION", course, semester, evalID, question);
+			// $http.post(SERVER + "courses/" + course + "/" + semester + "/evaluations/" + evalID, question)
+			// 	.success(function(data){
+			// 		console.log("VIRKAR!!!!!");
+			// 	})
+			// 	.error(function(data, status){
+			// 		if(status === 401){
+			// 			console.log("Error", status);
+			// 		}
+			// 	});
 		}
 	}
 

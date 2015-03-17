@@ -4,7 +4,6 @@ function ($scope, $modalInstance, toaster, studentFactory, TEMPLATE, evaluationF
 	$scope.courseQ = [];
 	$scope.teacherQ = [];
 	$scope.qObjects = [];
-
 	var array = TEMPLATE.template.CourseQuestions;
 	for(var i = 0; i < array.length; i++){
 		var obj = {
