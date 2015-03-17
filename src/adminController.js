@@ -8,6 +8,7 @@ function($scope, $modal, adminFactory){
 
 	adminFactory.getTemplates(function(templates){
 		$scope.templates = templates;
+		console.log($scope.templates);
 	});
 
 	adminFactory.getEvaluations(function (evaluations){
@@ -56,17 +57,16 @@ function($scope, $modal, adminFactory){
 
    		adminFactory.getEvalResults(id, function(res){
    			$scope.modalInstance = $modal.open({
-	      	templateUrl: 'ResultModalContent.html',
-	      	controller: 'ResultController',
-	      	size: 'lg',
-	      	resolve: {
-        		RESULT: function () {
-          			return res;
-        		}
-      		}
-	    });
-   		})
-
-   }
+	      		templateUrl: 'ResultModalContent.html',
+	      		controller: 'ResultController',
+	      		size: 'lg',
+	      		resolve: {
+        			RESULT: function () {
+          				return res;
+        			}
+      			}
+	    	});
+   		});
+   	}	
 
 }]);

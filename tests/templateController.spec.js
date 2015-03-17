@@ -66,7 +66,7 @@ describe("TemplateController", function(){
 		expect($scope.questObj.Text).toBe("Spurning");
 		expect($scope.questObj.TextEN).toBe("Question");
 		expect($scope.questObj.ImageUrl).toBe("");
-		expect($scope.questObj.type).toBe("text");
+		expect($scope.questObj.Type).toBe("text");
 		
 
 	});
@@ -180,7 +180,7 @@ describe("TemplateController", function(){
 		expect(obj.Text).toBe("Spurning");
 		expect(obj.TextEN).toBe("Question");
 		expect(obj.ImageUrl).toBe("");
-		expect(obj.type).toBe("single");
+		expect(obj.Type).toBe("single");
 		expect($scope.courseQuestions.length).toBe(1);
 
 	});
