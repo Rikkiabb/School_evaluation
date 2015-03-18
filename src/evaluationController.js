@@ -4,6 +4,9 @@ function ($scope, $modalInstance, toaster, studentFactory, TEMPLATE, evaluationF
 	$scope.courseQ = [];
 	$scope.teacherQ = [];
 	$scope.qObjects = [];
+
+
+	// building courseQuestion objects
 	var array = TEMPLATE.template.CourseQuestions;
 	for(var i = 0; i < array.length; i++){
 		var obj = {
@@ -15,6 +18,7 @@ function ($scope, $modalInstance, toaster, studentFactory, TEMPLATE, evaluationF
 		$scope.courseQ.push(obj);
 	}
 
+	// building teacherQuestion objects
 	var tArr = TEMPLATE.template.TeacherQuestions;
 	console.log("teach: ",TEMPLATE);
 	for(var k = 0; k < TEMPLATE.teachers.length; k++){
@@ -34,76 +38,66 @@ function ($scope, $modalInstance, toaster, studentFactory, TEMPLATE, evaluationF
 	}
 	$scope.questionCount = TEMPLATE.template.TeacherQuestions.length;
 	$scope.template = TEMPLATE.template;
-	
-	//$scope.teacherQ = TEMPLATE.template.TeacherQuestions;
 	$scope.teachers = TEMPLATE.teachers;
 
-	// $scope.changeCheck = function(quest, value){
+	function buildObj(QID, SSN, val){
+		var qObj = {
+				QuestionID: QID,
+				TeacherSSN: SSN,
+				Value: val
+			};
+		$scope.qObjects.push(qObj);
+	}
 
-	// 	if(!quest.answers.indexOf(value) !== -1){
-
-	// 		quest.answers.push(value);
-	// 	}
-	// }
-
-// addEvalQuestion: function(course, semester, evalID, question){
 	$scope.save = function () {
 
 		var arr = $scope.courseQ;
+		var val;
 		for(var i = 0; i < arr.length; i++){
-			
-			// if(arr[i].question.Type === "text"){
-				
-			// 	console.log($scope.courseQ[i].answers);
-				
-			// }
-			// else if(arr[i].question.Type === "single"){
-			// 	console.log($scope.courseQ[i].answers[0]);
-			// }
-			// else if(arr[i].question.Type === "multiple"){
+			if(arr[i].question.Type === "text"){
+				val = arr[i].answers[0];
+				buildObj(arr[i].question.ID, '', val);
+			}
 
-			// 	console.log($scope.courseQ[i].answers);
-			// }
-			//for(h = 0; h < arr.answers.length; h)
+			else if(arr[i].question.Type === "single"){
+				val = arr[i].answers;
+				buildObj(arr[i].question.ID, '', val);
+			}
 
-			var qObj = {
-					QuestionID: arr[i].question.ID,
-					TeacherSSN: '',
-					Value: arr[i].answers
-					
-				};
+			else if(arr[i].question.Type === "multiple"){
 
-			$scope.qObjects.push(qObj);
+				for(h = 0; h < arr[i].answers.length; h++){
+					val = ''
+					val += arr[i].answers[h];
+					buildObj(arr[i].question.ID, '', val);
+				}
+			}
 
 		}
-		//console.log("--------------------");
+
 		var tArr = $scope.teacherQ;
 		for(var i = 0; i < tArr.length; i++){
 			
-			// if(tArr[i].question.Type === "text"){
-				
-			// 	console.log($scope.teacherQ[i].answers);
-				
-			// }
-			// else if(tArr[i].question.Type === "single"){
-			// 	console.log($scope.teacherQ[i].answers[0]);
-			// }
-			// else if(tArr[i].question.Type === "multiple"){
+			if(tArr[i].question.Type === "text"){
+				val = tArr[i].answers[0];
+				buildObj(tArr[i].question.ID, tArr[i].SSN, val);
+			}
 
-			// 	console.log($scope.teacherQ[i].answers);
-			// }
-			console.log("arr:::::::::", tArr[i]);
-			var qObj = {
-					QuestionID: tArr[i].question.ID,
-					TeacherSSN: tArr[i].SSN,
-					Value: tArr[i].answers
-					
-				};
+			else if(tArr[i].question.Type === "single"){
+				val = tArr[i].answers;
+				buildObj(tArr[i].question.ID, tArr[i].SSN, val);
+			}
 
-			$scope.qObjects.push(qObj);
+			else if(tArr[i].question.Type === "multiple"){
 
+				for(h = 0; h < tArr[i].answers.length; h++){
+					val = ''
+					val += tArr[i].answers[h];
+					buildObj(tArr[i].question.ID, tArr[i].SSN, val);
+				}
+			}
 		}
-
+		//console.log("---->",$scope.qObjects,"<-----");
 		evaluationFactory.addEvalQuestion(TEMPLATE.course,
 			TEMPLATE.semester,
 			TEMPLATE.evalID,

@@ -44,7 +44,7 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 				Text: $scope.textQuestionIS,
 				TextEN: $scope.textQuestionENG,
 				ImageUrl: "",
-				type: "text"
+				Type: "text"
 			};
 
 			$scope.textQuestionIS = "";
@@ -77,7 +77,7 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 					Text: $scope.multipleQuestionIS,
 					TextEN: $scope.multipleQuestionENG,
 					ImageUrl: "",
-					type: $scope.multipleType,
+					Type: $scope.multipleType,
 					Answers: $scope.answers
 				};
 				

@@ -4,16 +4,16 @@ angular.module("EvalApp").factory("evaluationFactory", ["$http", "SERVER", funct
 
 		addEvalQuestion: function(course, semester, evalID, question){
 
-			console.log("EVALUATION", course, semester, evalID, question);
-			// $http.post(SERVER + "courses/" + course + "/" + semester + "/evaluations/" + evalID, question)
-			// 	.success(function(data){
-			// 		console.log("VIRKAR!!!!!");
-			// 	})
-			// 	.error(function(data, status){
-			// 		if(status === 401){
-			// 			console.log("Error", status);
-			// 		}
-			// 	});
+			console.log("--->",question);
+			$http.post(SERVER + "courses/" + course + "/" + semester + "/evaluations/" + evalID, question)
+				.success(function(data){
+					console.log("VIRKAR!!!!!");
+				})
+				.error(function(data, status){
+					if(status === 401){
+						console.log("Error", status);
+					}
+				});
 		}
 	}
 
