@@ -4,99 +4,103 @@ function ($scope, $modalInstance, toaster, studentFactory, TEMPLATE, evaluationF
 	$scope.courseQ = [];
 	$scope.teacherQ = [];
 	$scope.qObjects = [];
-
-	// building courseQuestion objects
-	var array = TEMPLATE.template.CourseQuestions;
-	for(var i = 0; i < array.length; i++){
-		var obj = {
-			question: array[i],
-			answers: [],
-			ID : array[i].ID
-		};
-
-		$scope.courseQ.push(obj);
-	}
-
-	// building teacherQuestion objects
-	var tArr = TEMPLATE.template.TeacherQuestions;
-	console.log("teach: ",TEMPLATE);
-	for(var k = 0; k < TEMPLATE.teachers.length; k++){
-		console.log("k:",k);
-		var name = TEMPLATE.teachers[k].FullName;
-		for(var i = 0; i < tArr.length; i++){
-			var obj = {
-				question: tArr[i],
-				answers: [],
-				ID: k + "_" + tArr[i].ID,
-				tName: name,
-				SSN: TEMPLATE.teachers[k].SSN
-			};
-			name = "";
-			$scope.teacherQ.push(obj);
-		}
-	}
 	$scope.questionCount = TEMPLATE.template.TeacherQuestions.length;
 	$scope.template = TEMPLATE.template;
 	$scope.teachers = TEMPLATE.teachers;
+	// building courseQuestion objects
+	$scope.array = TEMPLATE.template.CourseQuestions;
+	console.log("T:",TEMPLATE);
+	for(var i = 0; i < $scope.array.length; i++){
+		$scope.obj = {
+			question: $scope.array[i],
+			answers: [],
+			ID : $scope.array[i].ID
+		};
+		$scope.courseQ.push($scope.obj);
+		//console.log("QQQQQQQQQ:", $scope.courseQ);
+	}
+
+	// building teacherQuestion objects
+	$scope.tArr = TEMPLATE.template.TeacherQuestions;
+
+	for(var k = 0; k < TEMPLATE.teachers.length; k++){
+
+		$scope.name = TEMPLATE.teachers[k].FullName;
+
+		for(var i = 0; i < $scope.tArr.length; i++){
+			$scope.obj = {
+				question: $scope.tArr[i],
+				answers: [],
+				ID: k + "_" + $scope.tArr[i].ID,
+				tName: $scope.name,
+				SSN: TEMPLATE.teachers[k].SSN
+			};
+			$scope.name = "";
+			$scope.teacherQ.push($scope.obj);
+		}
+	}
+
 
 	function buildObj(QID, SSN, val){
-		var qObj = {
+		$scope.qObj = {
 				QuestionID: QID,
 				TeacherSSN: SSN,
 				Value: val
 			};
-		$scope.qObjects.push(qObj);
+		$scope.qObjects.push($scope.qObj);
+		console.log("qObjects:", $scope.qObjects);
 	}
 
 	$scope.save = function () {
 
-		var arr = $scope.courseQ;
-		var val;
-		for(var i = 0; i < arr.length; i++){
-			if(arr[i].question.Type === "text"){
-				val = arr[i].answers[0];
-				buildObj(arr[i].question.ID, '', val);
+		for(var i = 0; i < $scope.courseQ.length; i++){
+			console.log($scope.courseQ[i].question.Type,"<-----------------");
+			console.log($scope.courseQ[i].answers[0],"<-ÖÖÖ----------------");
+			if($scope.courseQ[i].question.Type === "text"){
+				console.log("-----__---__--_-__-_------__-_");
+				$scope.cVal = $scope.courseQ[i].answers[0];
+				buildObj($scope.courseQ[i].question.ID, '', $scope.cVal);
 			}
 
-			else if(arr[i].question.Type === "single"){
-				val = arr[i].answers;
-				buildObj(arr[i].question.ID, '', val);
+			else if($scope.courseQ[i].question.Type === "single"){
+				$scope.cVal = $scope.courseQ[i].answers;
+				buildObj($scope.courseQ[i].question.ID, '', $scope.cVal);
 			}
 
-			else if(arr[i].question.Type === "multiple"){
+			else if($scope.courseQ[i].question.Type === "multiple"){
 
-				for(h = 0; h < arr[i].answers.length; h++){
-					val = ''
-					val += arr[i].answers[h];
-					buildObj(arr[i].question.ID, '', val);
+				for(var h = 0; h < $scope.courseQ[i].answers.length; h++){
+					$scope.cVal = ''
+					$scope.cVal += $scope.courseQ[i].answers[h];
+					buildObj($scope.courseQ[i].question.ID, '', $scope.cVal);
 				}
 			}
 
 		}
 
-		var tArr = $scope.teacherQ;
-		for(var i = 0; i < tArr.length; i++){
+		for(var i = 0; i < $scope.teacherQ.length; i++){
 			
-			if(tArr[i].question.Type === "text"){
-				val = tArr[i].answers[0];
-				buildObj(tArr[i].question.ID, tArr[i].SSN, val);
+			if($scope.teacherQ[i].question.Type === "text"){
+				$scope.tVal = $scope.teacherQ[i].answers[0];
+				buildObj($scope.teacherQ[i].question.ID, $scope.teacherQ[i].SSN, $scope.tVal);
 			}
 
-			else if(tArr[i].question.Type === "single"){
-				val = tArr[i].answers;
-				buildObj(tArr[i].question.ID, tArr[i].SSN, val);
+			else if($scope.teacherQ[i].question.Type === "single"){
+				$scope.tVal = $scope.teacherQ[i].answers;
+				buildObj($scope.teacherQ[i].question.ID, $scope.teacherQ[i].SSN, $scope.tVal);
 			}
 
-			else if(tArr[i].question.Type === "multiple"){
+			else if($scope.teacherQ[i].question.Type === "multiple"){
 
-				for(h = 0; h < tArr[i].answers.length; h++){
-					val = ''
-					val += tArr[i].answers[h];
-					buildObj(tArr[i].question.ID, tArr[i].SSN, val);
+				for(h = 0; h < $scope.teacherQ[i].answers.length; h++){
+					$scope.tVal = ''
+					$scope.tVal += $scope.teacherQ[i].answers[h];
+					buildObj($scope.teacherQ[i].question.ID, $scope.teacherQ[i].SSN, $scope.tVal);
 				}
 			}
 		}
-		//console.log("---->",$scope.qObjects,"<-----");
+		console.log("------->",$scope.qObjects,"<--------");
+		console.log("----!!--->",$scope.courseQ,"<---!!-----");
 		evaluationFactory.addEvalQuestion(TEMPLATE.course,
 			TEMPLATE.semester,
 			TEMPLATE.evalID,
