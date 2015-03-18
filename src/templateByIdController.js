@@ -13,9 +13,8 @@ function ($scope, $modalInstance, adminFactory, ID, toaster) {
 
 	$scope.postEval = function(){
 
-		if(!$scope.Dates.$valid){
-
-			toaster.pop('error', 'Error!', 'Please insert a start and end date.');
+		if($scope.startDate >= $scope.endDate){
+			toaster.pop('error', 'Error!', 'End date must be after the start date.');
 			return;
 		}
 

@@ -100,36 +100,6 @@ describe("TemplateController", function(){
 
 	});
 
-	it("should call addQuestion with showMultiple true and have multipleType undefined", function(){
-		
-		$scope.showText = false;
-		$scope.showMultiple = true;
-
-		$scope.answersIS = [{text: "svar1"}];
-		$scope.answersENG = [{text: "answer1"}];
-		$scope.addQuestion();
-		expect($scope.answers).not.toBeDefined();
-		expect($scope.questObj).not.toBeDefined();
-		expect(toasterMock.pop).toHaveBeenCalled();
-
-	});
-
-	it("should call addQuestion with showMultiple true and have multipleType undefined and not reset input fields", function(){
-		
-		$scope.showText = false;
-		$scope.showMultiple = true;
-		$scope.textQuestionIS = "Spurning";
-		$scope.textQuestionENG = "Question";
-		$scope.answersIS = [{text: "svar1"}];
-		$scope.answersENG = [{text: "answer1"}];
-		$scope.addQuestion();
-		expect($scope.textQuestionIS).toBe("Spurning");
-		expect($scope.textQuestionENG).toBe("Question");
-		expect($scope.answersIS[0].text).toBe("svar1");
-		expect($scope.answersENG[0].text).toBe("answer1");
-		
-
-	});
 
 	it("should call addQuestion with showMultiple true and have right objects and arrays initialized", function(){
 		

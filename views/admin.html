@@ -45,18 +45,21 @@
 
      <div ng-show="!showTabs">
 
-      <form name="Info">
-        <h4>Please enter a title in Icelandic:</h4>
-        <input type="text" ng-model="titleIS" required/>
-        <h4>Please enter a title in English:</h4>
-        <input type="text" ng-model="titleENG" required/>
-        <h4>Please enter a intro text in Icelandic:</h4>
-        <input type="text" ng-model="introIS" required/>
-        <h4>Please enter a intro text in English:</h4>
-        <input type="text" ng-model="introENG" required/>
+      <form name="Info" ng-submit="changeShow()">
+        <div>
+          <h4>Please enter a title in Icelandic:</h4>
+          <input type="text" ng-model="titleIS" required/>
+          <h4>Please enter a title in English:</h4>
+          <input type="text" ng-model="titleENG" required/>
+          <h4>Please enter a intro text in Icelandic:</h4>
+          <input type="text" ng-model="introIS" required/>
+          <h4>Please enter a intro text in English:</h4>
+          <input type="text" ng-model="introENG" required/>
+        </div>
+        <button type="submit" class="btn btn-primary">Continue</button>
       </form>
 
-      <button class="btn btn-primary" ng-click="changeShow()">Continue</button>
+      
 
     </div>
 
@@ -69,14 +72,15 @@
     <div ng-show="showText">
 
       <div class="well">
-        <form name="TextQ">
+        <form name="TextQ" ng-submit="addQuestion()">
           <h4>I am creating a:</h4>
           <input type="radio" name="question" ng-model="questionType" required value="teacher"> Teacher question <br/>
-          <input type="radio"  ng-model="questionType" value="course"> Course question <br/>
+          <input type="radio" name="question"  ng-model="questionType" value="course"> Course question <br/>
           <h4>Please enter a question in Icelandic:</h4>
           <input type="text" ng-model="textQuestionIS" required/>
           <h4>Please enter a question in English:</h4>
           <input type="text" ng-model="textQuestionENG" required/>
+          <button type="submit" class="btn btn-primary"> + Add question</button>
         </form>
       </div>
 
@@ -84,14 +88,14 @@
 
     <div ng-show="showMultiple">
 
-      <form name="MultipleQ">
+      <form name="MultipleQ" ng-submit="addQuestion()">
         <h4>I am creating a:</h4>
         <input type="radio" name="qType" ng-model="questionType" required value="teacher">  Teacher question <br/>
-        <input type="radio"  ng-model="questionType" value="course"> Course question <br/>
+        <input type="radio" name="qType"  ng-model="questionType" value="course"> Course question <br/>
 
         <h4>Select a type:</h4>
         <input type="radio" name="mType" ng-model="multipleType" required value="single">  Radio <br/>
-        <input type="radio"  ng-model="multipleType" value="multiple"> Check <br/>
+        <input type="radio" name="mType"  ng-model="multipleType" value="multiple"> Check <br/>
 
         <h4>Please enter a question in Icelandic:</h4>
         <input type="text" ng-model="multipleQuestionIS" required/>
@@ -101,11 +105,12 @@
         <tags-input ng-model="answersIS" placeholder="Enter a choice and press Enter" required></tags-input>
         <h4>Please enter choices ordered by weight in English:</h4>
         <tags-input ng-model="answersENG" placeholder="Enter a choice and press Enter" required></tags-input>
+        <button type="submit" class="btn btn-primary"> + Add question</button>
       </form>
       
 
     </div>
-    <button class="btn btn-primary" ng-click="addQuestion()"> + Add question</button>
+  
     <hr \>
     <h4>Template:</h4>
     <div class="well">
@@ -164,7 +169,7 @@
 
 </div>
 <div class="modal-footer">
-    <form name="Dates">
+    <form name="Dates" ng-submit="postEval()">
       <div class="form-group">
               <label for="start-date" class="control-label">Start date</label>
               <div class="control">
@@ -178,8 +183,9 @@
                   <input id="end-date" class="form-control" type="date" ng-model="endDate" required>
               </div>
           </div>
+          <button type="submit" class="btn btn-primary">Post</button>
         </form>
-    <button class="btn btn-primary" ng-click="postEval()">Post</button>
+    
 </div>
 </script>
 

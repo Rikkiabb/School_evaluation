@@ -38,21 +38,6 @@ describe("LoginController", function(){
 		expect($scope.password).toBe(undefined);
 	});
 
-	it("should call toaster when username is undefined", function(){
-
-		$scope.username = undefined
-		$scope.password = 12345
-		$scope.login();
-		expect(toasterMock.pop).toHaveBeenCalled();
-	});
-
-	it("should call toaster when password is undefined", function(){
-
-		$scope.username = 'Stefanh13'
-		$scope.password = undefined
-		$scope.login();
-		expect(toasterMock.pop).toHaveBeenCalled();
-	});
 
 });
 

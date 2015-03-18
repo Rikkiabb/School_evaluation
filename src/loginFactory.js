@@ -1,5 +1,5 @@
 
-angular.module("EvalApp").factory('loginFactory', function($http, $location, studentFactory, SERVER, sessionService){
+angular.module("EvalApp").factory('loginFactory', function($http, $location, studentFactory, SERVER, sessionService, toaster){
 
 	return{
 		login: function(username, password){
@@ -17,7 +17,7 @@ angular.module("EvalApp").factory('loginFactory', function($http, $location, stu
 				})
 				.error(function(data, status){
 					if(status === 401){
-						console.log("Error");
+						toaster.pop('error', 'Error!', 'Wrong user name or password.');
 					}
 				});
 		}

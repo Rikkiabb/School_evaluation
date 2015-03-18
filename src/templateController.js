@@ -29,13 +29,8 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 
 	$scope.changeShow = function () {
 
-		if($scope.Info.$valid){
-			$scope.showTabs = !$scope.showTabs;
-		}
-		else
-		{
-			toaster.pop('error', 'Error!', 'All input fields must be filled out.');
-		}
+		$scope.showTabs = !$scope.showTabs;
+		
 	}
 
 	$scope.addQuestion = function(){
@@ -49,17 +44,7 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 			var id = $scope.courseQuestions.length;
 		}
 		if($scope.showText){
-			if(!$scope.TextQ.$valid){
-				
-				if(!$scope.TextQ.question.$valid){
-					toaster.pop('error', 'Error!', 'Please select a type before adding a question.');
-				}
-				else{
-					toaster.pop('error', 'Error!', 'All input fields must be filled out.');
-				}
-				
-				return;
-			}
+
 			 $scope.questObj = {
 				ID: id,
 				Text: $scope.textQuestionIS,
@@ -73,20 +58,6 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 		}
 		else if($scope.showMultiple){
 
-			if(!$scope.MultipleQ.$valid){
-				console.log($scope.MultipleQ.qType.$valid);
-				if(!$scope.MultipleQ.qType.$valid){
-					toaster.pop('error', 'Error!', 'Please choose a teacher or course question.');
-				}
-				else if(!$scope.MultipleQ.mType.$valid){
-					toaster.pop('error', 'Error!', 'Please select a multiple or single question.');
-				}
-				else{
-					toaster.pop('error', 'Error!', 'All input fields must be filled out.');
-				}
-
-				return;
-			}
 			$scope.answers = [];
 			if($scope.answersIS.length === $scope.answersENG.length){
 				
