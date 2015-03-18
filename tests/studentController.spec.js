@@ -8,7 +8,6 @@ describe("StudentController", function(){
 		getTemplateById: jasmine.createSpy('studentFactory.getTemplateById'),
 		getEvaluationById: jasmine.createSpy('studentFactory.getEvaluationById'),
 		getTeachers: jasmine.createSpy('studentFactory.getTeachers')
-
 	};
 
 	var modalMock = {                    
@@ -49,5 +48,11 @@ describe("StudentController", function(){
 		$scope.makeTemplate(17, "T-427-WEPO", "20151", {ID: 26, Title: "WOT M8?", TitleEN: "WOT M8?", IntroText: "inngangur", IntroTextEN: "intro", CourseQuestions: [{}], TeacherQuestions: [{}]}, [{}]);
 		expect(modalMock.open).toHaveBeenCalled();
 	});
+
+
+	// it("Expect makeTemplate to return the values, that are put in", function(){
+	// 	$scope.makeTemplate(17, "T-427-WEPO", "20151", {ID: 26, Title: "WOT M8?", TitleEN: "WOT M8?", IntroText: "inngangur", IntroTextEN: "intro", CourseQuestions: [{}], TeacherQuestions: [{}]}, [{}]); //fletta upp call through og sjá hvernig það virkar 2.2
+	// 	expect($scope.modalInstance).toBeDefined();
+	// });
 
 });

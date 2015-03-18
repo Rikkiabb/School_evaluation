@@ -15,10 +15,7 @@ function($scope, studentFactory, $modal){
 
 	$scope.getEvalByID = function (id, course, semester){
 
-
 		studentFactory.getEvaluationById(id, function (eval){
-
-			console.log("1", eval);
 
 			$scope.getTemplateById(id, course, semester, eval);
 
@@ -30,8 +27,6 @@ function($scope, studentFactory, $modal){
 
 		studentFactory.getTemplateById(eval.TemplateID, function (temp){
 
-			console.log("2", eval, temp);
-
 			$scope.getTeachers(id, course, semester, temp);
 
 		});
@@ -42,8 +37,6 @@ function($scope, studentFactory, $modal){
 
 		studentFactory.getTeachers(course, semester, function(teach){
 
-			console.log("3", temp, teach);
-
 			$scope.makeTemplate(id, course, semester, temp, teach);
 
 		});
@@ -52,9 +45,8 @@ function($scope, studentFactory, $modal){
 
 	$scope.makeTemplate = function(id, course, semester, temp, teach){
 
-		console.log("3", temp, teach);
-		console.log("THIS", teach);
-		console.log(course, semester, "++++++++");
+		// console.log("THIS", teach);
+		// console.log(course, semester, "++++++++");
 		$scope.modalInstance = $modal.open({
 			templateUrl: 'evaluationModalContent.html',
 			controller: 'EvaluationController',
@@ -74,7 +66,6 @@ function($scope, studentFactory, $modal){
 	      					
 	    	// });
 		});
-
 	};
 
 
