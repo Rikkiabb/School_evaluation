@@ -3,7 +3,8 @@ angular.module("EvalApp").directive("result", function ($window, $compile){
 	return {
 		restrict: "A",
 		scope: {
-			templ: "=result"
+			templ: "=result",
+			lang: "=lang"
 		},
 
 		link: function(scope, element, attr){
@@ -14,8 +15,16 @@ angular.module("EvalApp").directive("result", function ($window, $compile){
 			}
 
 			scope.max = 0;
+			
+			if(scope.lang === 0){
+				scope.question = scope.templ.Text;
+				scope.langu = 0;
+			}
+			else if(scope.lang === 1){
+				scope.question = scope.templ.TextEN;
+				scope.langu = 1;
+			}	
 
-			scope.question = scope.templ.Text;			
 			scope.qType = scope.templ.Type;
 
 			if(scope.qType === "text"){

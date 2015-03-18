@@ -30,6 +30,7 @@ describe("templateByIdController", function(){
 		expect($scope.template).toBeDefined();
 		expect($scope.startDate).toBeDefined();
 		expect($scope.endDate).toBeDefined();
+		expect($scope.showLanguage).toEqual("isl");
 	});
 
 	it("should get a template by id ID", function(){
@@ -84,7 +85,12 @@ describe("templateByIdController", function(){
 		expect(adminFactoryMock.createEvaluation).toHaveBeenCalled();
 	});
 
-	
+	it("should change the language from icelandic to english", function(){
+		$scope.changeLang("eng");
+
+		expect($scope.showLanguage).toEqual("eng");
+
+	}); 
 
 	// it("should call post eval and try to create an evaluationa and close the modal window", function(){
 		

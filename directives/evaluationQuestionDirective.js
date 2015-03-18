@@ -9,7 +9,6 @@ angular.module("EvalApp").directive("evaluationQuestion", function ($window, $co
 		},
 
 		link: function(scope, element, attr){
-			console.log("---------->",scope.templ.SSN,"<---------")
 			scope.contentUrl = function () {
 				if(scope.templ.question.Type === "multiple"){
 					return "templates/" + scope.templ.question.Type + "eEvalQuestion.html";

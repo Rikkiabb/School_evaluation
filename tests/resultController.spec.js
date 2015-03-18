@@ -29,6 +29,7 @@ describe("ResultController", function(){
 		expect($scope.courses).toBeDefined();
 		expect($scope.teachers).toBeDefined();
 		expect($scope.teachName).toBeDefined();
+		expect($scope.showLanguage).toEqual("isl");
 		
 	});
 
@@ -48,5 +49,12 @@ describe("ResultController", function(){
 		var expectedName = $scope.getTeachName(1);
 		expect(expectedName).toEqual(dabs);
 	});
+
+	it("should change the language from icelandic to english", function(){
+		$scope.changeLang("eng");
+
+		expect($scope.showLanguage).toEqual("eng");
+
+	}); 
 
 });

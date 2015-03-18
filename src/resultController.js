@@ -6,6 +6,11 @@ function ($scope, $modalInstance, RESULT, adminFactory) {
 	$scope.teachers = [];
 	$scope.teachName = [];
 
+	$scope.showLanguage = "isl"
+
+	$scope.changeLang = function(lang){
+		$scope.showLanguage = lang;
+	};
 	
 	$scope.getTeachName = function (SSN) {
 		for(var i = 0; i < $scope.teachers.length; i++){
