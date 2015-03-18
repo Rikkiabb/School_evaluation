@@ -2,10 +2,10 @@
 <div ng-repeat="ans in answers">
 	<div ng-if="!isTeach">
 		<input  type="radio" name="{{templ.ID}}" ng-model="templ.answers" value="{{ans.ID}}" required ng-click/> 
-			{{ans.Text}}
+			<span ng-show="langu === 0">{{ans.Text}}</span> <span ng-show="langu === 1">{{ans.TextEN}}</span>
 	</div>
 	<div ng-if="isTeach">
 		<input  type="radio" name="{{templ.ID}}" ng-model="templ.answers" value="{{ans.ID}}"/> 
-			{{ans.Text}}
+			<span ng-show="langu === 0">{{ans.Text}}</span> <span ng-show="langu === 1">{{ans.TextEN}}</span>
 	</div> 
 </div>

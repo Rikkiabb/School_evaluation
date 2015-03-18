@@ -4,7 +4,8 @@ angular.module("EvalApp").directive("evaluationQuestion", function ($window, $co
 		restrict: "A",
 		replace: true,
 		scope: {
-			templ: "=evaluationQuestion"
+			templ: "=evaluationQuestion",
+			lang: "=lang"
 		},
 
 		link: function(scope, element, attr){
@@ -16,23 +17,21 @@ angular.module("EvalApp").directive("evaluationQuestion", function ($window, $co
 				return "templates/" + scope.templ.question.Type + "EvalQuestion.html";
 			}
 
-
+			if(scope.lang === 0){
+				scope.question = scope.templ.question.Text;
+				scope.langu = 0;
+			}
+			else if(scope.lang === 1){
+				scope.question = scope.templ.question.TextEN;
+				scope.langu = 1;
+			}
 			
-			scope.index = attr.qIndex;
-			scope.question = scope.templ.question.Text;
 			scope.isTeach = false;
 			
 			scope.qType = scope.templ.question.Type;
-			// console.log(scope.qType);
+
 			if(scope.templ.question.Type === 'text'){
-				// scope.QID = "text_" + scope.templ.ID + "_" + index;
-				// var quest = angular.element("<div><p>" + scope.question + "</p>");
-				// var input = angular.element("<input type='text' ng-model='" + scope.QID + "' ></input></div>");
-				// compiled = $compile(quest);
-				// var a = quest.append(input);
-				// element.parent().append(a);
-				// $compile(element.contents())(scope);
-				// attr.type = "text";
+
 			}
 			else if(scope.qType === 'single' || scope.qType === 'multiple'){
 				scope.answers = scope.templ.question.Answers;
