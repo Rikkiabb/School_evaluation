@@ -16,7 +16,6 @@ function ($scope, $modalInstance, RESULT, adminFactory) {
 	}
 
 	$scope.getTeach = function (cID, semester) {
-
 		adminFactory.getTeachers(cID, semester, function(teachers) {
 			$scope.teachers = teachers;
 		});
