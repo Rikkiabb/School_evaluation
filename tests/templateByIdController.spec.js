@@ -34,21 +34,6 @@ describe("templateByIdController", function(){
 
 	it("should get a template by id ID", function(){
 		
-		var mockTemp = {
-			CourseQuestions: [{Answers: [{ID: 19, ImageURL: "sample string 4", Text: "sample string 2", TextEN: "sample string 3", Weight: 5}, {ID: 20, ImageURL: "sample string 4", Text: "sample string 2", TextEN: "sample string 3", Weight: 5}], ID: 50, ImageURL: "sample string 4", Text: "sample string 2", TextEN: "sample string 3", Type: "text"}, {Answers: [{ID: 21, ImageURL: "sample string 4", Text: "sample string 2", TextEN: "sample string 3", Weight: 5}, {ID: 22, ImageURL: "sample string 4", Text: "sample string 2", TextEN: "sample string 3", Weight: 5}], ID: 51, ImageURL: "sample string 4", Text: "sample string 2", TextEN: "sample string 3", Type: "text"}],
-			ID: 18,
-			IntroText: "sample string 4",
-			IntroTextEN: "sample string 5",
-			TeacherQuestions: [{Answers: [{ID: 23, ImageURL: "sample string 4", Text: "sample string 2", TextEN: "sample string 3", Weight: 5}, {ID: 24, ImageURL: "sample string 4", Text: "sample string 2", TextEN: "sample string 3", Weight: 5}], ID: 52, ImageURL: "sample string 4", Text: "sample string 2", TextEN: "sample string 3", Type: "text"}, {Answers: [{ID: 25, ImageURL: "sample string 4", Text: "sample string 2", TextEN: "sample string 3", Weight: 5}, {ID: 26, ImageURL: "sample string 4", Text: "sample string 2", TextEN: "sample string 3", Weight: 5}], ID: 53, ImageURL: "sample string 4", Text: "sample string 2", TextEN: "sample string 3", Type: "text"}],
-			Title: "sample string 2",
-			TitleEN: "sample string 3"
-
-		}
-
-		// expect($scope.template).toBe(mockTemp);
-		// expect($scope.CourseQuestions).toBeDefined();
-
-
 		expect(adminFactoryMock.getTemplateById).toHaveBeenCalledWith(id, jasmine.any(Function));
 	});
 
@@ -84,19 +69,4 @@ describe("templateByIdController", function(){
 		expect(adminFactoryMock.createEvaluation).toHaveBeenCalled();
 	});
 
-	
-
-	// it("should call post eval and try to create an evaluationa and close the modal window", function(){
-		
-	// 	$scope.postEval();
-	// 	var newEval = {
-	// 		TemplateID: id,
-	// 		StartDate: $scope.startDate.toISOString(),
-	// 		EndDate: $scope.endDate.toISOString()
-
-	// 	};
-
-	// 	expect(adminFactoryMock.createEvaluation).toHaveBeenCalledWith(newEval);
-	// 	expect(modalInstanceMock.close).toHaveBeenCalled();
-	// });
 });
