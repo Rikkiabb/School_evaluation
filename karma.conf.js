@@ -43,6 +43,7 @@ module.exports = function(config) {
         "directives/resultDirective.js",
         "bower_components/moment/min/moment.min.js",
         "node_modules/angular-mocks/angular-mocks.js",
+        "node_modules/less/dist/less.js",
         "bower_components/angular-moment/angular-moment.min.js",
         "bower_components/bootstrap/dist/js/bootstrap.min.js",
         "tests/*.spec.js"
