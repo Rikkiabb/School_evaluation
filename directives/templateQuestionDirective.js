@@ -16,6 +16,7 @@ angular.module("EvalApp").directive("templateQuestion", function ($window, $comp
 	
 			//Text, single or multiple.	
 			scope.question = scope.templ.Text;
+			scope.questionEN = scope.templ.TextEN;
 	
 			scope.qType = scope.templ.Type;
 			
