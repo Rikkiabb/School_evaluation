@@ -9,9 +9,15 @@ function ($scope, $modalInstance, toaster, studentFactory, TEMPLATE, evaluationF
 	$scope.template = TEMPLATE.template;
 	$scope.teachers = TEMPLATE.teachers;
 
+	$scope.showLanguage = "isl"
+
+	$scope.changeLang = function(lang){
+		$scope.showLanguage = lang;
+	};
+
 	// building courseQuestion objects
 	$scope.array = TEMPLATE.template.CourseQuestions;
-	console.log("T:",TEMPLATE);
+
 	for(var i = 0; i < $scope.array.length; i++){
 		$scope.obj = {
 			question: $scope.array[i],
@@ -19,7 +25,6 @@ function ($scope, $modalInstance, toaster, studentFactory, TEMPLATE, evaluationF
 			ID : $scope.array[i].ID
 		};
 		$scope.courseQ.push($scope.obj);
-		//console.log("QQQQQQQQQ:", $scope.courseQ);
 	}
 
 	// building teacherQuestion objects
@@ -50,16 +55,12 @@ function ($scope, $modalInstance, toaster, studentFactory, TEMPLATE, evaluationF
 				Value: val
 			};
 		$scope.qObjects.push($scope.qObj);
-		console.log("qObjects:", $scope.qObjects);
 	}
 
 	$scope.save = function () {
 
 		for(var i = 0; i < $scope.courseQ.length; i++){
-			console.log($scope.courseQ[i].question.Type,"<-----------------");
-			console.log($scope.courseQ[i].answers[0],"<-ÖÖÖ----------------");
 			if($scope.courseQ[i].question.Type === "text"){
-				console.log("-----__---__--_-__-_------__-_");
 				$scope.cVal = $scope.courseQ[i].answers[0];
 				buildObj($scope.courseQ[i].question.ID, '', $scope.cVal);
 			}
@@ -101,8 +102,6 @@ function ($scope, $modalInstance, toaster, studentFactory, TEMPLATE, evaluationF
 				}
 			}
 		}
-		console.log("------->",$scope.qObjects,"<--------");
-		console.log("----!!--->",$scope.courseQ,"<---!!-----");
 		evaluationFactory.addEvalQuestion(TEMPLATE.course,
 			TEMPLATE.semester,
 			TEMPLATE.evalID,

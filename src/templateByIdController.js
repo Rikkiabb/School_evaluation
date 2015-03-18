@@ -5,6 +5,12 @@ function ($scope, $modalInstance, adminFactory, ID, toaster) {
 	$scope.startDate = new Date();
 	$scope.endDate = new Date();
 
+	$scope.showLanguage = "isl";
+	$scope.changeLang = function(lang){
+		$scope.showLanguage = lang;
+	};
+
+
 	adminFactory.getTemplateById(ID, function(template){
 		$scope.template = template;
 		$scope.courseQuestions = template.CourseQuestions;

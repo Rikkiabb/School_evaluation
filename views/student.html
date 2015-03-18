@@ -13,32 +13,67 @@
 
 
 <script type="text/ng-template" id="evaluationModalContent.html">
-<div class="modal-header">
-    <h3 class="modal-title">{{template.Title}}</h3>
-    <p>{{template.IntroText}}</p>
-</div>
-<div class="modal-body">
-	<form name="courseForm" ng-submit="save()">
-	<div class="well">
-		<div ng-repeat="c in courseQ" >
-			
-			<div evaluation-question="c" q-index=0></div>
+	<tabset justified="true">
+		<tab heading="Íslenska" ng-click="changeLang('isl')"></tab>
+		<tab heading="English" ng-click="changeLang('eng')"></tab>
+  	</tabset>
+	<div ng-show="showLanguage === 'isl'">
+		<div class="modal-header">
+		    <h3 class="modal-title">{{template.Title}}</h3>
+		    <p>{{template.IntroText}}</p>
 		</div>
-
-
-	</div>
-	<div class="well">
-
-			<div ng-repeat="t in teacherQ" >
-				<div ng-show="t.tName !== ''">
-					<h3>{{t.tName}}</h3>
+		<div class="modal-body">
+			<form name="courseForm" ng-submit="save()">
+			<div class="well">
+				<div ng-repeat="c in courseQ" >
+					
+					<div evaluation-question="c" lang=0></div>
 				</div>
-				<div evaluation-question="t" q-index={{index}}></div>
+
+
 			</div>
-	
+			<div class="well">
+
+					<div ng-repeat="t in teacherQ" >
+						<div ng-show="t.tName !== ''">
+							<h3>{{t.tName}}</h3>
+						</div>
+						<div evaluation-question="t" lang=0></div>
+					</div>
+			
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
 	</div>
-	<button type="submit" class="btn btn-primary">Submit</button>
-	</form>
-</div>
+	<div ng-show="showLanguage === 'eng'">
+		<div class="modal-header">
+		    <h3 class="modal-title">{{template.TitleEN}}</h3>
+		    <p>{{template.IntroTextEN}}</p>
+		</div>
+		<div class="modal-body">
+			<form name="courseForm" ng-submit="save()">
+			<div class="well">
+				<div ng-repeat="c in courseQ" >
+					
+					<div evaluation-question="c" lang=1></div>
+				</div>
+
+
+			</div>
+			<div class="well">
+
+					<div ng-repeat="t in teacherQ" >
+						<div ng-show="t.tName !== ''">
+							<h3>{{t.tName}}</h3>
+						</div>
+						<div evaluation-question="t" lang=1></div>
+					</div>
+			
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
 
 </script>
