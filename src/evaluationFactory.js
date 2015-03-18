@@ -3,6 +3,7 @@ angular.module("EvalApp").factory("evaluationFactory", ["$http", "SERVER", funct
 	return {
 
 		addEvalQuestion: function(course, semester, evalID, question){
+
 			console.log("--->",question);
 			$http.post(SERVER + "courses/" + course + "/" + semester + "/evaluations/" + evalID, question)
 				.success(function(data){

@@ -5,6 +5,7 @@ function ($scope, $modalInstance, toaster, studentFactory, TEMPLATE, evaluationF
 	$scope.teacherQ = [];
 	$scope.qObjects = [];
 
+
 	// building courseQuestion objects
 	var array = TEMPLATE.template.CourseQuestions;
 	for(var i = 0; i < array.length; i++){
