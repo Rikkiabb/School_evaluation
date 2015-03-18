@@ -1,2 +1,7 @@
 <p> {{question}}</p>
-<textarea ng-model=templ.answers[0]></textarea>
+<div ng-if="!isTeach">
+	<textarea ng-model=templ.answers[0] required ></textarea>
+</div>
+<div ng-if="isTeach">
+	<textarea ng-model=templ.answers[0]></textarea>
+</div>
