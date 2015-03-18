@@ -3,6 +3,7 @@ function($scope, $modal, adminFactory){
 
 	$scope.templates = [];
 	$scope.evaluations = [];
+	//For displaying evaluations by status.
 	$scope.showStatus = "closed";
 
 
@@ -14,18 +15,22 @@ function($scope, $modal, adminFactory){
 		$scope.evaluations = evaluations;
 	});
 
+	//Change view of evaluations by status.
 	$scope.changeTab = function(status){
 		$scope.showStatus = status;
 	}
 	
+	//Open the new template modal.
 	$scope.newTemplate = function () {
 
+		//Open modal.
 	    $scope.modalInstance = $modal.open({
 	     	templateUrl: 'templateModalContent.html',
 	      	controller: 'TemplateController',
 	      	size: 'lg'
 	    });
 
+	    //If saved, then get array of templates again.
 	    $scope.modalInstance.result.then(function () {
 	      	adminFactory.getTemplates(function(templates){
 				$scope.templates = templates;
@@ -34,9 +39,10 @@ function($scope, $modal, adminFactory){
 	};
 
 	  
-
+   //Opens modal for viewing template by id.
    $scope.getTemplateById = function (id) {
 
+   		//Open modal.
    		$scope.modalInstance = $modal.open({
 	      	templateUrl: 'templateByIdModalContent.html',
 	      	controller: 'TemplateByIdController',
@@ -50,6 +56,7 @@ function($scope, $modal, adminFactory){
    		
    };
 
+   //Gets the result of an eval.
    $scope.getResults = function (id) {
 
    		adminFactory.getEvalResults(id, function(res){

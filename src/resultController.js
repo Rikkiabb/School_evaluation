@@ -8,10 +8,12 @@ function ($scope, $modalInstance, RESULT, adminFactory) {
 
 	$scope.showLanguage = "isl"
 
+	//Change the language of the results.
 	$scope.changeLang = function(lang){
 		$scope.showLanguage = lang;
 	};
 	
+	//Helper function that gets teacher name by SSN.
 	$scope.getTeachName = function (SSN) {
 		for(var i = 0; i < $scope.teachers.length; i++){
 			if($scope.teachers[i].SSN === SSN){
@@ -20,6 +22,7 @@ function ($scope, $modalInstance, RESULT, adminFactory) {
 		}
 	}
 
+	//Get teachers by CID and semester.
 	$scope.getTeach = function (cID, semester) {
 
 		adminFactory.getTeachers(cID, semester, function(teachers) {
@@ -31,7 +34,6 @@ function ($scope, $modalInstance, RESULT, adminFactory) {
 		
 	}
 
-	console.log($scope.result);
 
 	$scope.close = function () {
 		$modalInstance.dismiss('cancel');

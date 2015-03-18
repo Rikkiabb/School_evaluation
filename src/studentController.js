@@ -4,15 +4,18 @@ function($scope, studentFactory, $modal){
 	$scope.myCourses = [];
 	$scope.myEval = [];
 
+	//Get students courses.
 	studentFactory.courses(function (courses){
 		$scope.myCourses = courses;
 	});
 
+	//Get the students evaluation.
 	studentFactory.evaluations(function (eval){
 		$scope.myEval = eval;
 	});
 
 
+	//Used to get a template by ID.
 	$scope.getEvalByID = function (id, course, semester){
 
 		studentFactory.getEvaluationById(id, function (eval){
@@ -43,10 +46,9 @@ function($scope, studentFactory, $modal){
 
 	};
 
+	//Opens a modal for the student and creates the template.
 	$scope.makeTemplate = function(id, course, semester, temp, teach){
 
-		// console.log("THIS", teach);
-		// console.log(course, semester, "++++++++");
 		$scope.modalInstance = $modal.open({
 			templateUrl: 'evaluationModalContent.html',
 			controller: 'EvaluationController',
@@ -62,9 +64,7 @@ function($scope, studentFactory, $modal){
 			          }
 			    }
 			}
-			// 		$scope.modalInstance.result.then(function () {
-	      					
-	    	// });
+
 		});
 	};
 

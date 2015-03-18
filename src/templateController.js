@@ -15,6 +15,7 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 	$scope.answersIS = [];
 	$scope.answersENG = [];
 
+	//Change the view of text and multiple tabs.
 	$scope.changeTab = function(type){
 
 		if(type === "text"){
@@ -27,6 +28,7 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 		}
 	};
 
+	//Changes the view from the info input to quesiton adding.
 	$scope.changeShow = function () {
 
 		$scope.showTabs = !$scope.showTabs;
@@ -35,8 +37,7 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 
 	$scope.addQuestion = function(){
 		
-
-
+		//For quesiton ID.
 		if($scope.questionType === "teacher"){
 			var id = $scope.teacherQuestions.length;
 		}
@@ -53,19 +54,24 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 				Type: "text"
 			};
 
+			//Reset input fields.
 			$scope.textQuestionIS = "";
 			$scope.textQuestionENG = "";
 		}
 		else if($scope.showMultiple){
 
 			$scope.answers = [];
+			
+			//Answers have to be equal.
 			if($scope.answersIS.length === $scope.answersENG.length){
 				
+				//But cannot be empty.
 				if($scope.answersIS.length === 0){
 					toaster.pop('error', 'Error!', 'All input fields must be filled out.');
 					return;
 				}
 
+				//Build the answer objects.
 				for(var i = 0; i < $scope.answersIS.length; i++){
 					var answerObj = {
 						ID: i,
@@ -78,6 +84,7 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 					$scope.answers.push(answerObj);
 				}
 
+				//Create the question object.
 				$scope.questObj = {
 					ID: id,
 					Text: $scope.multipleQuestionIS,
@@ -87,7 +94,7 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 					Answers: $scope.answers
 				};
 				
-				
+				//Empty all inputs.
 				$scope.answersIS = [];
 				$scope.answersENG = [];
 				$scope.multipleQuestionIS = "";
@@ -101,6 +108,7 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 			
 		}
 
+		//Add question object by type of question.
 		if($scope.questionType === "teacher"){
 			$scope.teacherQuestions.push($scope.questObj);
 		}

@@ -4,7 +4,8 @@ angular.module("EvalApp").controller("LoginController", function($scope, $locati
 	$scope.password = undefined;
 
 	$scope.login = function($event){
-			
+		
+		//Login the user.
 		loginFactory.login($scope.username, $scope.password);	
 	};
 });
