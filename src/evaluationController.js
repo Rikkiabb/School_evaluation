@@ -4,9 +4,11 @@ function ($scope, $modalInstance, toaster, studentFactory, TEMPLATE, evaluationF
 	$scope.courseQ = [];
 	$scope.teacherQ = [];
 	$scope.qObjects = [];
+
 	$scope.questionCount = TEMPLATE.template.TeacherQuestions.length;
 	$scope.template = TEMPLATE.template;
 	$scope.teachers = TEMPLATE.teachers;
+
 	// building courseQuestion objects
 	$scope.array = TEMPLATE.template.CourseQuestions;
 	console.log("T:",TEMPLATE);

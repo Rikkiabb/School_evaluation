@@ -66,7 +66,7 @@ describe("TemplateController", function(){
 		expect($scope.questObj.Text).toBe("Spurning");
 		expect($scope.questObj.TextEN).toBe("Question");
 		expect($scope.questObj.ImageUrl).toBe("");
-		expect($scope.questObj.type).toBe("text");
+		expect($scope.questObj.Type).toBe("text");
 		
 
 	});
@@ -100,36 +100,6 @@ describe("TemplateController", function(){
 
 	});
 
-	it("should call addQuestion with showMultiple true and have multipleType undefined", function(){
-		
-		$scope.showText = false;
-		$scope.showMultiple = true;
-
-		$scope.answersIS = [{text: "svar1"}];
-		$scope.answersENG = [{text: "answer1"}];
-		$scope.addQuestion();
-		expect($scope.answers).not.toBeDefined();
-		expect($scope.questObj).not.toBeDefined();
-		expect(toasterMock.pop).toHaveBeenCalled();
-
-	});
-
-	it("should call addQuestion with showMultiple true and have multipleType undefined and not reset input fields", function(){
-		
-		$scope.showText = false;
-		$scope.showMultiple = true;
-		$scope.textQuestionIS = "Spurning";
-		$scope.textQuestionENG = "Question";
-		$scope.answersIS = [{text: "svar1"}];
-		$scope.answersENG = [{text: "answer1"}];
-		$scope.addQuestion();
-		expect($scope.textQuestionIS).toBe("Spurning");
-		expect($scope.textQuestionENG).toBe("Question");
-		expect($scope.answersIS[0].text).toBe("svar1");
-		expect($scope.answersENG[0].text).toBe("answer1");
-		
-
-	});
 
 	it("should call addQuestion with showMultiple true and have right objects and arrays initialized", function(){
 		
@@ -180,7 +150,7 @@ describe("TemplateController", function(){
 		expect(obj.Text).toBe("Spurning");
 		expect(obj.TextEN).toBe("Question");
 		expect(obj.ImageUrl).toBe("");
-		expect(obj.type).toBe("single");
+		expect(obj.Type).toBe("single");
 		expect($scope.courseQuestions.length).toBe(1);
 
 	});

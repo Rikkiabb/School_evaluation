@@ -1,5 +1,10 @@
 <p> {{question}}</p>
 <div ng-repeat="ans in answers">
-	<input type="checkbox" name="templ.ID" checklist-model="templ.answers" checklist-value="ans.ID"/> {{ans.Text}}
+	<div ng-if="!isTeach">
+		<input type="checkbox" name="templ.ID" checklist-model="templ.answers" checklist-value="ans.ID" ng-required="!templ.answers.length" /> {{ans.Text}}
+	</div>
+	<div ng-if="isTeach">
+		<input type="checkbox" name="templ.ID" checklist-model="templ.answers" checklist-value="ans.ID" /> {{ans.Text}}
+	</div>
 
 </div>

@@ -15,41 +15,67 @@ function($scope, studentFactory, $modal){
 
 	$scope.getEvalByID = function (id, course, semester){
 
+
 		studentFactory.getEvaluationById(id, function (eval){
 
-			studentFactory.getTemplateById(eval.TemplateID , function (temp) {
+			console.log("1", eval);
 
-				studentFactory.getTeachers(course, semester, function(teach) {
-					console.log(course, semester, "++++++++");
-					$scope.modalInstance = $modal.open({
-				      	templateUrl: 'evaluationModalContent.html',
-				      	controller: 'EvaluationController',
-				      	size: 'lg',
-				      	resolve: {
-			        		TEMPLATE: function () {
-			          			return {
-			          				template: temp,
-			          				teachers: teach,
-			          				course: course,
-			          				semester: semester,
-			          				evalID: id
-			          			}
-			        		}
-			      		}
-			      // 		$scope.modalInstance.result.then(function () {
-	      					
-	    				// });
-			    	});
-				});
-
-			});
+			$scope.getTemplateById(id, course, semester, eval);
 
 		});
 
+	};
+
+	$scope.getTemplateById = function (id, course, semester, eval){
+
+		studentFactory.getTemplateById(eval.TemplateID, function (temp){
+
+			console.log("2", eval, temp);
+
+			$scope.getTeachers(id, course, semester, temp);
+
+		});
 
 	};
-	// $scope.myCourses = sessionService.getCourses();
-	// $scope.myEval = sessionService.getEvaluations();
+
+	$scope.getTeachers = function(id, course, semester, temp){
+
+		studentFactory.getTeachers(course, semester, function(teach){
+
+			console.log("3", temp, teach);
+
+			$scope.makeTemplate(id, course, semester, temp, teach);
+
+		});
+
+	};
+
+	$scope.makeTemplate = function(id, course, semester, temp, teach){
+
+		console.log("3", temp, teach);
+		console.log("THIS", teach);
+		console.log(course, semester, "++++++++");
+		$scope.modalInstance = $modal.open({
+			templateUrl: 'evaluationModalContent.html',
+			controller: 'EvaluationController',
+			size: 'lg',
+			resolve: {
+			    TEMPLATE: function () {
+			        return {
+			          	template: temp,
+			          	teachers: teach,
+			          	course: course,
+			          	semester: semester,
+			          	evalID: id
+			          }
+			    }
+			}
+			// 		$scope.modalInstance.result.then(function () {
+	      					
+	    	// });
+		});
+
+	};
 
 
 

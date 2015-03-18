@@ -1,15 +1,22 @@
-angular.module('EvalApp').controller('TemplateByIdController', ["$scope", "$modalInstance", "adminFactory", "ID",
-function ($scope, $modalInstance, adminFactory, ID) {
+angular.module('EvalApp').controller('TemplateByIdController', ["$scope", "$modalInstance", "adminFactory", "ID", "toaster",
+function ($scope, $modalInstance, adminFactory, ID, toaster) {
 
 	$scope.template = {};
+	$scope.startDate = new Date();
+	$scope.endDate = new Date();
 
 	adminFactory.getTemplateById(ID, function(template){
 		$scope.template = template;
+		$scope.courseQuestions = template.CourseQuestions;
+		$scope.teacherQuestions = template.TeacherQuestions;
 	});
 
 	$scope.postEval = function(){
-		$scope.startDate = new Date("October 13, 2013 11:13:00");
-		$scope.endDate = new Date("October 13, 2015 11:13:00");
+
+		if($scope.startDate >= $scope.endDate){
+			toaster.pop('error', 'Error!', 'End date must be after the start date.');
+			return;
+		}
 
 		$scope.newEval = {
 			TemplateID: ID,
@@ -17,7 +24,6 @@ function ($scope, $modalInstance, adminFactory, ID) {
 			EndDate: $scope.endDate.toISOString()
 
 		};
-
 		adminFactory.createEvaluation($scope.newEval);
 		$modalInstance.close();
 	};

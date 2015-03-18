@@ -1,0 +1,7 @@
+<h4>{{question}}</h4>
+<div ng-repeat="a in answers track by $index">
+	<h5>{{a.AnswerText}}</h5>
+	<progressbar max="max" value="a.Count">
+		<span style="color:white; white-space:nowrap;">{{a.Count}} / {{max}}</span>
+	</progressbar>
+</div>

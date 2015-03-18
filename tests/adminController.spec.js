@@ -2,21 +2,20 @@ describe("AdminController", function(){
 	var controller;
 	var $scope;
 	var adminFactoryMock = {
-		
 		getTemplates: jasmine.createSpy('adminFactory.getTemplates')
 	};
+
 	
 	beforeEach(module("EvalApp"));
 
 	beforeEach(inject(function ($controller, $rootScope) {
 		$scope = $rootScope.$new();
-		controller = $controller("AdminController", {$scope: $scope, adminFactory: adminFactoryMock});
+		controller = $controller("AdminController", {$scope: $scope});
 	}));
 
 	it("should define the template array and get all the templates", function(){
 		
 		expect($scope.templates).toBeDefined();
-		expect(adminFactoryMock.getTemplates).toHaveBeenCalled();
 		
 	});
 

@@ -1,4 +1,6 @@
+<div class="well">
 <button class="btn btn-default" ng-click="newTemplate()">New template</button>
+</div>
 
 <div class="well">
   <h3>Templates</h3>
@@ -6,6 +8,34 @@
     <li><button class="btn btn-primary" ng-click="getTemplateById(temp.ID)">{{temp.Title}}</button></li>
   </ul>
 </div>
+
+
+  <h3>Evaluations</h3>
+  <tabset justified="true">
+      <tab heading="Closed" ng-click="changeTab('closed')"></tab>
+      <tab heading="Open" ng-click="changeTab('open')"></tab>
+      <tab heading="New" ng-click="changeTab('new')"></tab>
+  </tabset>
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Results</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="eval in evaluations" ng-show="showStatus === eval.Status">
+        <td>{{eval.TemplateTitle}}</td>
+        <td>{{ eval.StartDate | date: "dd-MM-yyyy"}}</td>
+        <td>{{ eval.EndDate | date: "dd-MM-yyyy"}}</td>
+        <td ng-show="eval.Status === 'closed' || eval.Status === 'open'"><button class="btn" ng-click="getResults(eval.ID)">Results</button></td>
+        <td ng-show="eval.Status !== 'closed'">Not completed</td>
+    </tr>
+  </tbody>
+</table>
+
 
 <script type="text/ng-template" id="templateModalContent.html">
 <div class="modal-header">
@@ -15,16 +45,21 @@
 
      <div ng-show="!showTabs">
 
-      <h4>Please enter a title in Icelandic:</h4>
-      <input type="text" ng-model="titleIS"/>
-      <h4>Please enter a title in English:</h4>
-      <input type="text" ng-model="titleENG"/>
-      <h4>Please enter a intro text in Icelandic:</h4>
-      <input type="text" ng-model="introIS"/>
-      <h4>Please enter a intro text in English:</h4>
-      <input type="text" ng-model="introENG"/>
+      <form name="Info" ng-submit="changeShow()">
+        <div>
+          <h4>Please enter a title in Icelandic:</h4>
+          <input type="text" ng-model="titleIS" required/>
+          <h4>Please enter a title in English:</h4>
+          <input type="text" ng-model="titleENG" required/>
+          <h4>Please enter a intro text in Icelandic:</h4>
+          <input type="text" ng-model="introIS" required/>
+          <h4>Please enter a intro text in English:</h4>
+          <input type="text" ng-model="introENG" required/>
+        </div>
+        <button type="submit" class="btn btn-primary">Continue</button>
+      </form>
 
-      <button class="btn btn-primary" ng-click="showTabs = !showTabs">Continue</button>
+      
 
     </div>
 
@@ -36,60 +71,65 @@
 
     <div ng-show="showText">
 
-      <h4>I am creating a:</h4>
-      <input type="radio" ng-model="questionType" value="teacher">  Teacher question <br/>
-      <input type="radio" ng-model="questionType" value="course"> Course question <br/>
-      <h4>Please enter a question in Icelandic:</h4>
-      <input type="text" ng-model="textQuestionIS"/>
-      <h4>Please enter a question in English:</h4>
-      <input type="text" ng-model="textQuestionENG"/>
+      <div class="well">
+        <form name="TextQ" ng-submit="addQuestion()">
+          <h4>I am creating a:</h4>
+          <input type="radio" name="question" ng-model="questionType" required value="teacher"> Teacher question <br/>
+          <input type="radio" name="question"  ng-model="questionType" value="course"> Course question <br/>
+          <h4>Please enter a question in Icelandic:</h4>
+          <input type="text" ng-model="textQuestionIS" required/>
+          <h4>Please enter a question in English:</h4>
+          <input type="text" ng-model="textQuestionENG" required/>
+          <button type="submit" class="btn btn-primary"> + Add question</button>
+        </form>
+      </div>
 
     </div>
 
     <div ng-show="showMultiple">
 
-      <h4>I am creating a:</h4>
-      <input type="radio" ng-model="questionType" value="teacher">  Teacher question <br/>
-      <input type="radio" ng-model="questionType" value="course"> Course question <br/>
+      <form name="MultipleQ" ng-submit="addQuestion()">
+        <h4>I am creating a:</h4>
+        <input type="radio" name="qType" ng-model="questionType" required value="teacher">  Teacher question <br/>
+        <input type="radio" name="qType"  ng-model="questionType" value="course"> Course question <br/>
 
-      <h4>Select a type:</h4>
-      <input type="radio" ng-model="multipleType" value="single">  Radio <br/>
-      <input type="radio" ng-model="multipleType" value="multiple"> Check <br/>
+        <h4>Select a type:</h4>
+        <input type="radio" name="mType" ng-model="multipleType" required value="single">  Radio <br/>
+        <input type="radio" name="mType"  ng-model="multipleType" value="multiple"> Check <br/>
 
-      <h4>Please enter a question in Icelandic:</h4>
-      <input type="text" ng-model="multipleQuestionIS"/>
-      <h4>Please enter a question in English:</h4>
-      <input type="text" ng-model="multipleQuestionENG"/>
-      <h4>Please enter choices ordered by weight in Icelandic:</h4>
-      <tags-input ng-model="answersIS" placeholder="Enter a choice and press Enter"></tags-input>
-      <h4>Please enter choices ordered by weight in English:</h4>
-      <tags-input ng-model="answersENG" placeholder="Enter a choice and press Enter"></tags-input>
+        <h4>Please enter a question in Icelandic:</h4>
+        <input type="text" ng-model="multipleQuestionIS" required/>
+        <h4>Please enter a question in English:</h4>
+        <input type="text" ng-model="multipleQuestionENG" required/>
+        <h4>Please enter choices ordered by weight in Icelandic:</h4>
+        <tags-input ng-model="answersIS" placeholder="Enter a choice and press Enter" required></tags-input>
+        <h4>Please enter choices ordered by weight in English:</h4>
+        <tags-input ng-model="answersENG" placeholder="Enter a choice and press Enter" required></tags-input>
+        <button type="submit" class="btn btn-primary"> + Add question</button>
+      </form>
       
 
     </div>
-    <button class="btn btn-primary" ng-click="addQuestion()"> + Add question</button>
+  
     <hr \>
     <h4>Template:</h4>
-    <h4>{{titleIS}} - {{titleENG}}</h4>
-    <h4>{{introIS}} - {{introENG}}</h4>
-    <h4>Course Questions:</h4>
-    <ul ng-repeat="quest in courseQuestions">
-      <li>
-          {{quest.Text}} - {{quest.TextEN}}
-          <ul ng-repeat="answer in quest.Answers">
-            <li>{{answer.Text}} - {{answer.TextEN}}</li>
-          </ul>
-      </li>
-    </ul>
-  <h4>Teacher questions:</h4>
-    <ul ng-repeat="teach in teacherQuestions">
-      <li>
-          {{teach.Text}} - {{teach.TextEN}}
-          <ul ng-repeat="answer in teach.Answers">
-            <li>{{answer.Text}} - {{answer.TextEN}}</li>
-          </ul>
-      </li>
-    </ul>
+    <div class="well">
+      <h4>{{titleIS}} - {{titleENG}}</h4>
+      <h4>{{introIS}} - {{introENG}}</h4>
+    </div>
+    <div class="well">
+      <h4>Course questions</h4>
+      <div ng-repeat="c in courseQuestions" >
+        <div template-question="c"></div>
+      </div>
+    </div>
+
+    <div class="well">
+      <h4>Teacher questions</h4>
+      <div ng-repeat="t in teacherQuestions" >
+        <div template-question="t"></div>
+      </div>
+    </div>
     </div>
 
     
@@ -103,22 +143,72 @@
 
 <script type="text/ng-template" id="templateByIdModalContent.html">
 <div class="modal-header">
-    <h3 class="modal-title">New Template</h3>
+    <h3 class="modal-title">{{template.Title}}</h3>
 </div>
 <div class="modal-body">
 
-  <h1>{{template.Title}} - {{template.Title}}</h1>
 
-  <h2>Intro</h2>
+  <div class="well">
+    <p>{{template.IntroText}}</p>
+  </div>
+  
+  <div class="well">
+      <h4>Course questions</h4>
+      <div ng-repeat="c in courseQuestions" >
+        <div template-question="c"></div>
+      </div>
+    </div>
 
-  <p>{{template.IntroText}}</p>
-
-  <p>{{template.IntroTextEN}}</p>
+    <div class="well">
+      <h4>Teacher questions</h4>
+      <div ng-repeat="t in teacherQuestions" >
+        <div template-question="t"></div>
+      </div>
+    </div>
 
 
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="postEval()">Post</button>
+    <form name="Dates" ng-submit="postEval()">
+      <div class="form-group">
+              <label for="start-date" class="control-label">Start date</label>
+              <div class="control">
+                  <input id="start-date" class="form-control" type="date" ng-model="startDate" required>
+              </div>
+          </div>
+              
+          <div class="form-group">
+              <label for="end-date" class="control-label">End date</label>
+              <div class="control">
+                  <input id="end-date" class="form-control" type="date" ng-model="endDate" required>
+              </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Post</button>
+        </form>
+    
+</div>
+</script>
+
+<script type="text/ng-template" id="ResultModalContent.html">
+<div class="modal-header">
+    <h3 class="modal-title">Results</h3>
+</div>
+<div class="modal-body">
+
+<accordion>
+  <accordion-group heading="{{c.CourseID}}" ng-repeat="c in courses" ng-click="getTeach(c.CourseID, c.Semester)">
+    <div ng-repeat="q in c.Questions">
+      <div ng-if="q.TeacherSSN !== null">
+        <h2>{{getTeachName(q.TeacherSSN)}}</h2>
+      </div>
+      <div result="q"></div>
+    </div>    
+  </accordion-group>
+</accordion>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="close()">Close</button>
 </div>
 </script>
 

@@ -27,10 +27,15 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 		}
 	};
 
+	$scope.changeShow = function () {
+
+		$scope.showTabs = !$scope.showTabs;
+		
+	}
+
 	$scope.addQuestion = function(){
-		if($scope.questionType === undefined){
-			//TODO: error handling;
-		}
+		
+
 
 		if($scope.questionType === "teacher"){
 			var id = $scope.teacherQuestions.length;
@@ -39,27 +44,28 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 			var id = $scope.courseQuestions.length;
 		}
 		if($scope.showText){
+
 			 $scope.questObj = {
 				ID: id,
 				Text: $scope.textQuestionIS,
 				TextEN: $scope.textQuestionENG,
 				ImageUrl: "",
-				type: "text"
+				Type: "text"
 			};
 
 			$scope.textQuestionIS = "";
 			$scope.textQuestionENG = "";
 		}
 		else if($scope.showMultiple){
-			
-			if($scope.multipleType === undefined){
-				toaster.pop('error', 'Error!', 'You have to select a type before creating the question.');
-				return;
-			}
 
 			$scope.answers = [];
 			if($scope.answersIS.length === $scope.answersENG.length){
 				
+				if($scope.answersIS.length === 0){
+					toaster.pop('error', 'Error!', 'All input fields must be filled out.');
+					return;
+				}
+
 				for(var i = 0; i < $scope.answersIS.length; i++){
 					var answerObj = {
 						ID: i,
@@ -77,7 +83,7 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 					Text: $scope.multipleQuestionIS,
 					TextEN: $scope.multipleQuestionENG,
 					ImageUrl: "",
-					type: $scope.multipleType,
+					Type: $scope.multipleType,
 					Answers: $scope.answers
 				};
 				
@@ -89,6 +95,7 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 			}
 			else{
 				toaster.pop('error', 'Error!', 'Please have the same amount of English and Icelandic answers.');
+				return;
 			}
 
 			

@@ -53,6 +53,45 @@ angular.module("EvalApp").factory("adminFactory", ["$http", "SERVER", function($
 						console.log("Error");
 					}
 				});
+		},
+
+		getEvaluations: function (callback) {
+			$http.get(SERVER + "evaluations")
+				.success(function(data){
+					console.log(data);
+					callback(data);
+				})
+				.error(function(data, status){
+					if(status === 401){
+						console.log("Error");
+					}
+				});
+		},
+
+		getEvalResults: function (id, callback) {
+			$http.get(SERVER + "evaluations/" + id)
+				.success(function(data){
+					// console.log(data);
+					callback(data);
+				})
+				.error(function(data, status){
+					if(status === 401){
+						console.log("Error");
+					}
+				});
+		},
+
+		getTeachers: function (cID, semester, callback) {
+			$http.get(SERVER + "courses/" + cID + "/" + semester + "/teachers")
+				.success(function(data){
+					
+					callback(data);
+				})
+				.error(function(data, status){
+					if(status === 401){
+						console.log("Error");
+					}
+				});
 		}
 	};
 

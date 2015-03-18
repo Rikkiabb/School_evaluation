@@ -18,10 +18,14 @@
     <p>{{template.IntroText}}</p>
 </div>
 <div class="modal-body">
+	<form name="courseForm" ng-submit="save()">
 	<div class="well">
 		<div ng-repeat="c in courseQ" >
+			
 			<div evaluation-question="c" q-index=0></div>
 		</div>
+
+
 	</div>
 	<div class="well">
 
@@ -31,10 +35,10 @@
 				</div>
 				<div evaluation-question="t" q-index={{index}}></div>
 			</div>
-		
+	
 	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
 </div>
-<div class="modal-footer">
-    <button class="btn btn-primary" ng-click="save()">Save</button>
-</div>
+
 </script>
