@@ -5,9 +5,10 @@ angular.module("EvalApp").factory('loginFactory', function($http, $location, stu
 		login: function(username, password){
 			$http.post(SERVER + "login", {user: username, pass: password})
 				.success(function(data){
-					console.log(data);
+					//Set user and token.
 					sessionService.setToken(data.Token);
 					sessionService.setUser(data.User);
+					
 					if(data.User.Role === "admin"){
 						$location.path("/admin");
 					}

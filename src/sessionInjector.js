@@ -3,8 +3,9 @@ angular.module("EvalApp").factory("sessionInjector", function(sessionService){
 	return{
 
 		request: function(config){
-
+			//If token is not null
 			if(sessionService.getToken()){
+				//Set authorization header.
 				config.headers['Authorization'] = "Basic " + sessionService.getToken();
 			}
 			return config;
@@ -13,6 +14,6 @@ angular.module("EvalApp").factory("sessionInjector", function(sessionService){
 });
 
 angular.module("EvalApp").config(['$httpProvider', function($httpProvider) {  
-    //console.log("HELLO");
+    //Push injector to provider.
     $httpProvider.interceptors.push('sessionInjector');
 }]);

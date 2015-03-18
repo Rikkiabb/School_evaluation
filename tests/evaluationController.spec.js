@@ -56,6 +56,7 @@ describe("evaluationController", function(){
 		expect($scope.tArr).toBeDefined();
 		expect($scope.courseQ).toBeDefined();
 		expect($scope.qObjects).toBeDefined();
+		expect($scope.showLanguage).toEqual("isl");
 	});
 
 	it("should push one course question object onto the courseQ array", function(){
@@ -156,17 +157,23 @@ describe("evaluationController", function(){
 		$scope.teacherQ[0].answers[1] = "3";
 		$scope.save();
 
-		// expect($scope.tVal).toEqual("2");
+
 		expect($scope.qObjects[0].QuestionID).toBe(200);
 		expect($scope.qObjects[0].TeacherSSN).toBe("2410872989");
 		expect($scope.qObjects[0].Value).toEqual("2");
-		//console.log("+++++++++++", $scope.teacherQ[0].answers.length);
+
 		expect($scope.qObjects[1].QuestionID).toBe(200);
 		expect($scope.qObjects[1].TeacherSSN).toBe("2410872989");
 		expect($scope.qObjects[1].Value).toEqual("3");
-		// expect($scope.qObjects[0].TeacherSSN).toBe("2410872989");
-		// expect($scope.qObjects[0].Value).toEqual("2");
+
 	});
+
+	it("should change the language from icelandic to english", function(){
+		$scope.changeLang("eng");
+
+		expect($scope.showLanguage).toEqual("eng");
+
+	}); 
 });
 
 

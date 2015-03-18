@@ -1,4 +1,4 @@
-angular.module("EvalApp").factory("adminFactory", ["$http", "SERVER", function($http, SERVER){
+angular.module("EvalApp").factory("adminFactory", ["$http", "SERVER", "toaster", function($http, SERVER, toaster){
 
 	return {
 
@@ -6,11 +6,11 @@ angular.module("EvalApp").factory("adminFactory", ["$http", "SERVER", function($
 
 			$http.post(SERVER + "evaluationtemplates", template)
 				.success(function(data){
-					//TODO: GIVE MESSAGE
+					toaster.pop('success', 'YES!', 'You have added a template to your collection!.');
 				})
 				.error(function(data, status){
-					if(status === 401){
-						//TODO: ERROR MESSAGE
+					if(status === 400){
+						toaster.pop('error', 'ERROR!', 'Template must contain at least one question.');
 					}
 				});
 		},
@@ -19,13 +19,10 @@ angular.module("EvalApp").factory("adminFactory", ["$http", "SERVER", function($
 
 			$http.get(SERVER + "evaluationtemplates")
 				.success(function(data){
-					console.log(data);
 					callback(data);
 				})
 				.error(function(data, status){
-					if(status === 401){
-						console.log("Error");
-					}
+					
 				});
 		},
 
@@ -33,64 +30,50 @@ angular.module("EvalApp").factory("adminFactory", ["$http", "SERVER", function($
 
 			$http.get(SERVER + "evaluationtemplates/" + id)
 				.success(function(data){
-					console.log(data);
 					callback(data);
 				})
 				.error(function(data, status){
-					if(status === 401){
-						console.log("Error");
-					}
+					
 				});
 		},
 
 		createEvaluation: function(obj){
 			$http.post(SERVER + "evaluations/", obj)
 				.success(function(data){
-					console.log(data);
+					
 				})
 				.error(function(data, status){
-					if(status === 401){
-						console.log("Error");
-					}
+					
 				});
 		},
 
 		getEvaluations: function (callback) {
 			$http.get(SERVER + "evaluations")
 				.success(function(data){
-					console.log(data);
 					callback(data);
 				})
 				.error(function(data, status){
-					if(status === 401){
-						console.log("Error");
-					}
+				
 				});
 		},
 
 		getEvalResults: function (id, callback) {
 			$http.get(SERVER + "evaluations/" + id)
 				.success(function(data){
-					// console.log(data);
 					callback(data);
 				})
 				.error(function(data, status){
-					if(status === 401){
-						console.log("Error");
-					}
+
 				});
 		},
 
 		getTeachers: function (cID, semester, callback) {
 			$http.get(SERVER + "courses/" + cID + "/" + semester + "/teachers")
 				.success(function(data){
-					
 					callback(data);
 				})
 				.error(function(data, status){
-					if(status === 401){
-						console.log("Error");
-					}
+
 				});
 		}
 	};

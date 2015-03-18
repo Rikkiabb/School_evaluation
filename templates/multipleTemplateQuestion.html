@@ -1,5 +1,5 @@
-<h5> {{question}}</h5>
+<h5> {{question}} / {{questionEN}}</h5>
 <div ng-repeat="ans in answers">
-	<input type="checkbox" disabled/> {{ans.Text}}
-
+	<input type="checkbox" disabled/> <span>{{ans.Text}} / {{ans.TextEN}}</span> 
 </div>
+
