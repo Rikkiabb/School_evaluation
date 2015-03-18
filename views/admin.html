@@ -30,7 +30,7 @@
         <td>{{eval.TemplateTitle}}</td>
         <td>{{ eval.StartDate | date: "dd-MM-yyyy"}}</td>
         <td>{{ eval.EndDate | date: "dd-MM-yyyy"}}</td>
-        <td ng-show="eval.Status === 'closed'"><button class="btn" ng-click="getResults(eval.ID)">Results</button></td>
+        <td ng-show="eval.Status === 'closed' || eval.Status === 'open'"><button class="btn" ng-click="getResults(eval.ID)">Results</button></td>
         <td ng-show="eval.Status !== 'closed'">Not completed</td>
     </tr>
   </tbody>
@@ -45,16 +45,18 @@
 
      <div ng-show="!showTabs">
 
-      <h4>Please enter a title in Icelandic:</h4>
-      <input type="text" ng-model="titleIS"/>
-      <h4>Please enter a title in English:</h4>
-      <input type="text" ng-model="titleENG"/>
-      <h4>Please enter a intro text in Icelandic:</h4>
-      <input type="text" ng-model="introIS"/>
-      <h4>Please enter a intro text in English:</h4>
-      <input type="text" ng-model="introENG"/>
+      <form name="Info">
+        <h4>Please enter a title in Icelandic:</h4>
+        <input type="text" ng-model="titleIS" required/>
+        <h4>Please enter a title in English:</h4>
+        <input type="text" ng-model="titleENG" required/>
+        <h4>Please enter a intro text in Icelandic:</h4>
+        <input type="text" ng-model="introIS" required/>
+        <h4>Please enter a intro text in English:</h4>
+        <input type="text" ng-model="introENG" required/>
+      </form>
 
-      <button class="btn btn-primary" ng-click="showTabs = !showTabs">Continue</button>
+      <button class="btn btn-primary" ng-click="changeShow()">Continue</button>
 
     </div>
 
@@ -67,35 +69,39 @@
     <div ng-show="showText">
 
       <div class="well">
-      <h4>I am creating a:</h4>
-      <input type="radio" ng-model="questionType" value="teacher">  Teacher question <br/>
-      <input type="radio" ng-model="questionType" value="course"> Course question <br/>
-      <h4>Please enter a question in Icelandic:</h4>
-      <input type="text" ng-model="textQuestionIS"/>
-      <h4>Please enter a question in English:</h4>
-      <input type="text" ng-model="textQuestionENG"/>
+        <form name="TextQ">
+          <h4>I am creating a:</h4>
+          <input type="radio" name="question" ng-model="questionType" required value="teacher"> Teacher question <br/>
+          <input type="radio"  ng-model="questionType" value="course"> Course question <br/>
+          <h4>Please enter a question in Icelandic:</h4>
+          <input type="text" ng-model="textQuestionIS" required/>
+          <h4>Please enter a question in English:</h4>
+          <input type="text" ng-model="textQuestionENG" required/>
+        </form>
       </div>
 
     </div>
 
     <div ng-show="showMultiple">
 
-      <h4>I am creating a:</h4>
-      <input type="radio" ng-model="questionType" value="teacher">  Teacher question <br/>
-      <input type="radio" ng-model="questionType" value="course"> Course question <br/>
+      <form name="MultipleQ">
+        <h4>I am creating a:</h4>
+        <input type="radio" name="qType" ng-model="questionType" required value="teacher">  Teacher question <br/>
+        <input type="radio"  ng-model="questionType" value="course"> Course question <br/>
 
-      <h4>Select a type:</h4>
-      <input type="radio" ng-model="multipleType" value="single">  Radio <br/>
-      <input type="radio" ng-model="multipleType" value="multiple"> Check <br/>
+        <h4>Select a type:</h4>
+        <input type="radio" name="mType" ng-model="multipleType" required value="single">  Radio <br/>
+        <input type="radio"  ng-model="multipleType" value="multiple"> Check <br/>
 
-      <h4>Please enter a question in Icelandic:</h4>
-      <input type="text" ng-model="multipleQuestionIS"/>
-      <h4>Please enter a question in English:</h4>
-      <input type="text" ng-model="multipleQuestionENG"/>
-      <h4>Please enter choices ordered by weight in Icelandic:</h4>
-      <tags-input ng-model="answersIS" placeholder="Enter a choice and press Enter"></tags-input>
-      <h4>Please enter choices ordered by weight in English:</h4>
-      <tags-input ng-model="answersENG" placeholder="Enter a choice and press Enter"></tags-input>
+        <h4>Please enter a question in Icelandic:</h4>
+        <input type="text" ng-model="multipleQuestionIS" required/>
+        <h4>Please enter a question in English:</h4>
+        <input type="text" ng-model="multipleQuestionENG" required/>
+        <h4>Please enter choices ordered by weight in Icelandic:</h4>
+        <tags-input ng-model="answersIS" placeholder="Enter a choice and press Enter" required></tags-input>
+        <h4>Please enter choices ordered by weight in English:</h4>
+        <tags-input ng-model="answersENG" placeholder="Enter a choice and press Enter" required></tags-input>
+      </form>
       
 
     </div>
@@ -158,19 +164,21 @@
 
 </div>
 <div class="modal-footer">
-    <div class="form-group">
-            <label for="start-date" class="control-label">Start date</label>
-            <div class="control">
-                <input id="start-date" class="form-control" type="date" ng-model="startDate">
-            </div>
-        </div>
-            
-        <div class="form-group">
-            <label for="end-date" class="control-label">End date</label>
-            <div class="control">
-                <input id="end-date" class="form-control" type="date" ng-model="endDate">
-            </div>
-        </div>
+    <form name="Dates">
+      <div class="form-group">
+              <label for="start-date" class="control-label">Start date</label>
+              <div class="control">
+                  <input id="start-date" class="form-control" type="date" ng-model="startDate" required>
+              </div>
+          </div>
+              
+          <div class="form-group">
+              <label for="end-date" class="control-label">End date</label>
+              <div class="control">
+                  <input id="end-date" class="form-control" type="date" ng-model="endDate" required>
+              </div>
+          </div>
+        </form>
     <button class="btn btn-primary" ng-click="postEval()">Post</button>
 </div>
 </script>

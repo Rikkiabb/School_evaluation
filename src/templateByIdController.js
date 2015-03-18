@@ -1,5 +1,5 @@
-angular.module('EvalApp').controller('TemplateByIdController', ["$scope", "$modalInstance", "adminFactory", "ID",
-function ($scope, $modalInstance, adminFactory, ID) {
+angular.module('EvalApp').controller('TemplateByIdController', ["$scope", "$modalInstance", "adminFactory", "ID", "toaster",
+function ($scope, $modalInstance, adminFactory, ID, toaster) {
 
 	$scope.template = {};
 	$scope.startDate = new Date();
@@ -13,6 +13,11 @@ function ($scope, $modalInstance, adminFactory, ID) {
 
 	$scope.postEval = function(){
 
+		if(!$scope.Dates.$valid){
+
+			toaster.pop('error', 'Error!', 'Please insert a start and end date.');
+			return;
+		}
 
 		$scope.newEval = {
 			TemplateID: ID,

@@ -27,10 +27,20 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 		}
 	};
 
-	$scope.addQuestion = function(){
-		if($scope.questionType === undefined){
-			//TODO: error handling;
+	$scope.changeShow = function () {
+
+		if($scope.Info.$valid){
+			$scope.showTabs = !$scope.showTabs;
 		}
+		else
+		{
+			toaster.pop('error', 'Error!', 'All input fields must be filled out.');
+		}
+	}
+
+	$scope.addQuestion = function(){
+		
+
 
 		if($scope.questionType === "teacher"){
 			var id = $scope.teacherQuestions.length;
@@ -39,6 +49,17 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 			var id = $scope.courseQuestions.length;
 		}
 		if($scope.showText){
+			if(!$scope.TextQ.$valid){
+				
+				if(!$scope.TextQ.question.$valid){
+					toaster.pop('error', 'Error!', 'Please select a type before adding a question.');
+				}
+				else{
+					toaster.pop('error', 'Error!', 'All input fields must be filled out.');
+				}
+				
+				return;
+			}
 			 $scope.questObj = {
 				ID: id,
 				Text: $scope.textQuestionIS,
@@ -51,15 +72,29 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 			$scope.textQuestionENG = "";
 		}
 		else if($scope.showMultiple){
-			
-			if($scope.multipleType === undefined){
-				toaster.pop('error', 'Error!', 'You have to select a type before creating the question.');
+
+			if(!$scope.MultipleQ.$valid){
+				console.log($scope.MultipleQ.qType.$valid);
+				if(!$scope.MultipleQ.qType.$valid){
+					toaster.pop('error', 'Error!', 'Please choose a teacher or course question.');
+				}
+				else if(!$scope.MultipleQ.mType.$valid){
+					toaster.pop('error', 'Error!', 'Please select a multiple or single question.');
+				}
+				else{
+					toaster.pop('error', 'Error!', 'All input fields must be filled out.');
+				}
+
 				return;
 			}
-
 			$scope.answers = [];
 			if($scope.answersIS.length === $scope.answersENG.length){
 				
+				if($scope.answersIS.length === 0){
+					toaster.pop('error', 'Error!', 'All input fields must be filled out.');
+					return;
+				}
+
 				for(var i = 0; i < $scope.answersIS.length; i++){
 					var answerObj = {
 						ID: i,
@@ -89,6 +124,7 @@ function ($scope, $modalInstance, toaster, adminFactory) {
 			}
 			else{
 				toaster.pop('error', 'Error!', 'Please have the same amount of English and Icelandic answers.');
+				return;
 			}
 
 			
