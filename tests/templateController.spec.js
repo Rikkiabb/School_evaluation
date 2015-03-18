@@ -89,6 +89,15 @@ describe("TemplateController", function(){
 
 	});
 
+	it("should call the changeShow function and flip the truth value of showTabs", function(){
+		
+		
+		
+		$scope.changeShow();
+		expect($scope.showTabs).toBeTruthy();
+
+	});
+
 	it("should call addQuestion with showText true and input string have been cleared", function(){
 		
 		$scope.showText = true;
@@ -112,6 +121,20 @@ describe("TemplateController", function(){
 		expect($scope.answers).toBeDefined();
 		expect($scope.questObj).not.toBeDefined();
 		expect(toasterMock.pop).toHaveBeenCalled();
+
+	});
+
+	it("should call try to add quesiton wiht both answers arrays with the same length but empty and call toaster", function(){
+		
+		$scope.showText = false;
+		$scope.showMultiple = true;
+		$scope.answersIS = [];
+		$scope.answersENG = [];
+		$scope.addQuestion();
+		expect(toasterMock.pop).toHaveBeenCalled();
+
+		
+
 
 	});
 

@@ -129,9 +129,17 @@
       
     </div>
     </script>
-    <script type="text/ng-template" id="templateByIdModalContent.html">
+    
+
+<script type="text/ng-template" id="templateByIdModalContent.html">
+
+  <tabset justified="true">
+    <tab heading="Íslenska" ng-click="changeLang('isl')"></tab>
+    <tab heading="English" ng-click="changeLang('eng')"></tab>
+  </tabset>
+  <div ng-show="showLanguage === 'isl'">
     <div class="modal-header">
-      <h3 class="modal-title">{{template.Title}}</h3>
+        <h3 class="modal-title">{{template.Title}}</h3>
     </div>
     <div class="modal-body">
       <div class="well">
@@ -139,56 +147,137 @@
       </div>
       
       <div class="well">
-        <h4>Course questions</h4>
-        <div ng-repeat="c in courseQuestions" >
-          <div template-question="c"></div>
+          <h4>Spurningar um námskeið</h4>
+          <div ng-repeat="c in courseQuestions" >
+            <div template-question="c" lang=0></div>
+          </div>
         </div>
-      </div>
-      <div class="well">
-        <h4>Teacher questions</h4>
-        <div ng-repeat="t in teacherQuestions" >
-          <div template-question="t"></div>
+
+        <div class="well">
+          <h4>Spurningar um kennara</h4>
+          <div ng-repeat="t in teacherQuestions" >
+            <div template-question="t" lang=0></div>
+          </div>
         </div>
-      </div>
+
+
     </div>
     <div class="modal-footer">
-      <form name="Dates" ng-submit="postEval()">
-        <div class="form-group">
-          <label for="start-date" class="control-label">Start date</label>
-          <div class="control">
-            <input id="start-date" class="form-control" type="date" ng-model="startDate" required>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label for="end-date" class="control-label">End date</label>
-          <div class="control">
-            <input id="end-date" class="form-control" type="date" ng-model="endDate" required>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Post</button>
-      </form>
-      
+        <form name="Dates" ng-submit="postEval()">
+          <div class="form-group">
+                  <label for="start-date" class="control-label">Byjunar dagur</label>
+                  <div class="control">
+                      <input id="start-date" class="form-control" type="date" ng-model="startDate" required>
+                  </div>
+              </div>
+                  
+              <div class="form-group">
+                  <label for="end-date" class="control-label">Loka dagur</label>
+                  <div class="control">
+                      <input id="end-date" class="form-control" type="date" ng-model="endDate" required>
+                  </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Post</button>
+            </form>  
     </div>
-    </script>
-    <script type="text/ng-template" id="ResultModalContent.html">
+  </div>
+ <div ng-show="showLanguage === 'eng'">
     <div class="modal-header">
-      <h3 class="modal-title">Results</h3>
+        <h3 class="modal-title">{{template.TitleEN}}</h3>
     </div>
     <div class="modal-body">
-      <accordion>
-        <accordion-group heading="{{c.CourseID}}" ng-repeat="c in courses" ng-click="getTeach(c.CourseID, c.Semester)">
-          <div ng-repeat="q in c.Questions">
-            <div ng-if="q.TeacherSSN !== null">
-              <h2>{{getTeachName(q.TeacherSSN)}}</h2>
-            </div>
-            <div result="q"></div>
+      <div class="well">
+        <p>{{template.IntroTextEN}}</p>
+      </div>
+      
+      <div class="well">
+          <h4>Course questions</h4>
+          <div ng-repeat="c in courseQuestions" >
+            <div template-question="c" lang=1></div>
           </div>
-        </accordion-group>
-      </accordion>
+        </div>
+
+        <div class="well">
+          <h4>Teacher questions</h4>
+          <div ng-repeat="t in teacherQuestions" >
+            <div template-question="t" lang=1></div>
+          </div>
+        </div>
+
+
     </div>
     <div class="modal-footer">
-      <button class="btn btn-primary" ng-click="close()">Close</button>
+        <form name="Dates" ng-submit="postEval()">
+          <div class="form-group">
+                  <label for="start-date" class="control-label">Start date</label>
+                  <div class="control">
+                      <input id="start-date" class="form-control" type="date" ng-model="startDate" required>
+                  </div>
+              </div>
+                  
+              <div class="form-group">
+                  <label for="end-date" class="control-label">End date</label>
+                  <div class="control">
+                      <input id="end-date" class="form-control" type="date" ng-model="endDate" required>
+                  </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Post</button>
+            </form>  
     </div>
-    </script>
-    <!-- <div ng-show="selected">Selection from a modal: {{ selected }}</div> -->
+  </div>
+</script>
+
+<script type="text/ng-template" id="ResultModalContent.html">
+
+  <tabset justified="true">
+    <tab heading="Íslenska" ng-click="changeLang('isl')"></tab>
+    <tab heading="English" ng-click="changeLang('eng')"></tab>
+  </tabset>
+  <div ng-show="showLanguage === 'isl'">
+
+    <div class="modal-header">
+        <h3 class="modal-title">Results</h3>
+    </div>
+    <div class="modal-body">
+
+    <accordion>
+      <accordion-group heading="{{c.CourseID}}" ng-repeat="c in courses" ng-click="getTeach(c.CourseID, c.Semester)">
+        <div ng-repeat="q in c.Questions">
+          <div ng-if="q.TeacherSSN !== null">
+            <h2>{{getTeachName(q.TeacherSSN)}}</h2>
+          </div>
+          <div result="q" lang=0></div>
+        </div>    
+      </accordion-group>
+    </accordion>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="close()">Close</button>
+    </div>
+  </div>
+  <div ng-show="showLanguage === 'eng'">
+
+    <div class="modal-header">
+        <h3 class="modal-title">Results</h3>
+    </div>
+    <div class="modal-body">
+
+    <accordion>
+      <accordion-group heading="{{c.CourseID}}" ng-repeat="c in courses" ng-click="getTeach(c.CourseID, c.Semester)">
+        <div ng-repeat="q in c.Questions">
+          <div ng-if="q.TeacherSSN !== null">
+            <h2>{{getTeachName(q.TeacherSSN)}}</h2>
+          </div>
+          <div result="q" lang=1></div>
+        </div>    
+      </accordion-group>
+    </accordion>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="close()">Close</button>
+    </div>
+  </div>
+</script>
+

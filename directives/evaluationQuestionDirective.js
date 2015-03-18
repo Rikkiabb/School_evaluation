@@ -4,40 +4,44 @@ angular.module("EvalApp").directive("evaluationQuestion", function ($window, $co
 		restrict: "A",
 		replace: true,
 		scope: {
-			templ: "=evaluationQuestion"
+			templ: "=evaluationQuestion",
+			lang: "=lang"
 		},
 
 		link: function(scope, element, attr){
-			console.log("---------->",scope.templ.SSN,"<---------")
+			
+			//Returns the templateURL
 			scope.contentUrl = function () {
+				//Hax because multipleEvalQuestion.html wasn't working.
 				if(scope.templ.question.Type === "multiple"){
 					return "templates/" + scope.templ.question.Type + "eEvalQuestion.html";
 				}
 				return "templates/" + scope.templ.question.Type + "EvalQuestion.html";
 			}
 
-
+			//If language is Icelandic.
+			if(scope.lang === 0){
+				scope.question = scope.templ.question.Text;
+				scope.langu = 0;
+			}
+			//If language is English.
+			else if(scope.lang === 1){
+				scope.question = scope.templ.question.TextEN;
+				scope.langu = 1;
+			}
 			
-			scope.index = attr.qIndex;
-			scope.question = scope.templ.question.Text;
+			//To display input fields with no validation.
 			scope.isTeach = false;
 			
+			//Text, single or multiple.
 			scope.qType = scope.templ.question.Type;
-			// console.log(scope.qType);
-			if(scope.templ.question.Type === 'text'){
-				// scope.QID = "text_" + scope.templ.ID + "_" + index;
-				// var quest = angular.element("<div><p>" + scope.question + "</p>");
-				// var input = angular.element("<input type='text' ng-model='" + scope.QID + "' ></input></div>");
-				// compiled = $compile(quest);
-				// var a = quest.append(input);
-				// element.parent().append(a);
-				// $compile(element.contents())(scope);
-				// attr.type = "text";
-			}
-			else if(scope.qType === 'single' || scope.qType === 'multiple'){
+
+			if(scope.qType === 'single' || scope.qType === 'multiple'){
+				//Get answers.
 				scope.answers = scope.templ.question.Answers;
 			}
 
+			
 			if(scope.templ.SSN !== undefined){
 				scope.isTeach = true;
 			}
