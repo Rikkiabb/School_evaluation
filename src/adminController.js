@@ -8,17 +8,14 @@ function($scope, $modal, adminFactory){
 
 	adminFactory.getTemplates(function(templates){
 		$scope.templates = templates;
-		console.log($scope.templates);
 	});
 
 	adminFactory.getEvaluations(function (evaluations){
 		$scope.evaluations = evaluations;
-		console.log("EVALS", $scope.evaluations);
 	});
 
 	$scope.changeTab = function(status){
 		$scope.showStatus = status;
-		console.log($scope.showStatus);
 	}
 	
 	$scope.newTemplate = function () {
